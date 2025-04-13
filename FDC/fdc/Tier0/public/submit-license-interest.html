@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Submit Licensing Interest - FDC</title>
+  <link rel="stylesheet" href="fdc_styles.css">
+</head>
+<body>
+  <header>
+    <h1>Submit Licensing Interest</h1>
+    <p>Indicate your organization's intent to explore licensing opportunities for the Functional Drug Complex platform.</p>
+  </header>
+
+  <main>
+    <form action="https://aws-secure-endpoint.example.com/fdc-license" method="POST">
+      <label for="name">Your Full Name:</label><br>
+      <input type="text" id="name" name="name" required><br><br>
+
+      <label for="organization">Organization:</label><br>
+      <input type="text" id="organization" name="organization" required><br><br>
+
+      <label for="email">Work Email:</label><br>
+      <input type="email" id="email" name="email" required><br><br>
+
+      <label for="intent">Brief Summary of Licensing Interest:</label><br>
+      <textarea id="intent" name="intent" rows="5" required></textarea><br><br>
+
+      <input type="submit" value="Submit Interest">
+    </form>
+  </main>
+
+  <footer>
+    &copy; 2025 Kunfirm Technologies - All Rights Reserved.
+  </footer>
+</body>
+</html>

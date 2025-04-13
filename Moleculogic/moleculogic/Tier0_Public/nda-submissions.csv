@@ -1,0 +1,3 @@
+timestamp,name,email,affiliation,intended_use,nda_file_path,status
+2025-04-09T14:25:00Z,Jane Doe,jane.doe@biocorp.com,BioCorp,"Molecule access for evaluation",/nda_files/nda_janedoe.pdf,pending
+2025-04-09T14:42:00Z,Dr. Omar N.,omar.ng@neuroai.org,NeuroAI,"FDC review and paper access",/nda_files/nda_omarng.pdf,pending

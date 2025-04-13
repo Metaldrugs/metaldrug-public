@@ -1,0 +1,40 @@
+<!-- Moleculogic - Request NDA Access -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Request NDA Access - Moleculogic</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="header">
+    <h1>Confidential Access Request</h1>
+    <p>Request Tier 1 Access via NDA Submission</p>
+  </header>
+
+  <main class="main">
+    <form action="/submit-nda-request" method="POST" enctype="multipart/form-data">
+      <label for="fullname">Full Name:</label>
+      <input type="text" id="fullname" name="fullname" required>
+
+      <label for="email">Official Email:</label>
+      <input type="email" id="email" name="email" required>
+
+      <label for="organization">Organization / Affiliation:</label>
+      <input type="text" id="organization" name="organization" required>
+
+      <label for="purpose">Purpose of Request:</label>
+      <textarea id="purpose" name="purpose" rows="5" required></textarea>
+
+      <label for="ndaFile">Upload Signed NDA (PDF Only):</label>
+      <input type="file" id="ndaFile" name="ndaFile" accept=".pdf" required>
+
+      <button type="submit" class="btn">Submit NDA Request</button>
+    </form>
+  </main>
+
+  <footer class="footer">
+    <p>&copy; 2025 Moleculogic - All requests are subject to verification. Unauthorized distribution is prohibited.</p>
+  </footer>
+</body>
+</html>
