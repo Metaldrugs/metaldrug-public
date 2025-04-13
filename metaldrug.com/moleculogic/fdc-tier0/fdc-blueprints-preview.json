@@ -1,0 +1,30 @@
+{
+  "generated_at": "2025-04-12T00:27:56.856687Z",
+  "tier": "fdc-tier0",
+  "blueprints": [
+    {
+      "name": "NeuroLigand-FDC-21",
+      "category": "Peptide-RNA Hybrid",
+      "description": "Programmable anti-inflammatory blueprint combining small peptide gate with RNA-guided expression.",
+      "entropy_score": "Low-to-Mid",
+      "simulatable": false,
+      "public": true
+    },
+    {
+      "name": "ImmunoFDC-ZnV",
+      "category": "Zinc-Responsive Ligand",
+      "description": "Immune-tuned functional compound responsive to Zn2+ gradients in tumor microenvironments.",
+      "entropy_score": "Mid",
+      "simulatable": false,
+      "public": true
+    },
+    {
+      "name": "FDC-\u03b2ChainMod-5X",
+      "category": "Protein-Logic Scaffold",
+      "description": "Tier 0 demo of FDC logic with synthetic \u03b2-chain modulation platform for enzyme targeting.",
+      "entropy_score": "Mid-to-High",
+      "simulatable": false,
+      "public": true
+    }
+  ]
+}

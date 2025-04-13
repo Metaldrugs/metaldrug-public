@@ -1,0 +1,41 @@
+<!-- request-tier2.html for FDC Tier 1 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Request Tier 2 Access - FDC</title>
+  <link rel="stylesheet" href="../public/fdc_styles.css">
+</head>
+<body>
+  <div class="fdc-container">
+    <div include-html="../public/fdc_header.html"></div>
+
+    <main>
+      <h1>Request Tier 2 Access</h1>
+      <p>Tier 2 access provides deeper integration with Moleculogic simulations, FDC logic engines, and SEI overlays.</p>
+
+      <form action="../../nda_submission_repo/form-handler.php" method="POST" class="fdc-form">
+        <label for="name">Full Name</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="email">Institutional Email</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="organization">Affiliation</label>
+        <input type="text" id="organization" name="organization" required>
+
+        <label for="intent">Intent of Access</label>
+        <textarea id="intent" name="intent" rows="4" required placeholder="Describe your intended use of Tier 2 data and simulation capabilities."></textarea>
+
+        <button type="submit">Submit Tier 2 Request</button>
+      </form>
+
+      <p class="note">You will be contacted by the Moleculogic FDC Review Team upon approval. Please ensure your email is correct.</p>
+    </main>
+
+    <div include-html="../public/fdc_footer.html"></div>
+  </div>
+
+  <script src="../public/fdc_include.js"></script>
+</body>
+</html>

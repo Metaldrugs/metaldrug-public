@@ -1,0 +1,16 @@
+{
+  "name": "BioHybrid Proto",
+  "components": [
+    {
+      "type": "rna_scaffold",
+      "binding_sites": ["AUG", "CCG"],
+      "function": "gene regulation"
+    },
+    {
+      "type": "ligand",
+      "structure": "C8H10N4O2",
+      "activity": "adenosine receptor"
+    }
+  ],
+  "notes": "Proof of concept for dynamic regulation using RNA-ligand hybrid structure."
+}

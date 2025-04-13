@@ -1,0 +1,83 @@
+<!-- File: mdc_fdc_tier2_review.html -->
+<!--
+Summary:
+Unified review dashboard for MDC and FDC Tier 2 submissions. Allows reviewers to
+- View submissions
+- Approve, Reject, or Request Edits
+- Submit notes
+- Triggers backend notifications (already implemented)
+-->
+
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tier 2 Submission Review | MetalDrug</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { darkMode: 'class' };
+  </script>
+</head>
+<body class="bg-gray-950 text-gray-100">
+  <div id="header"></div>
+
+  <main class="max-w-6xl mx-auto p-6">
+    <h1 class="text-3xl font-bold text-indigo-400 mb-6">Tier 2 Submissions Review</h1>
+
+    <div class="flex gap-4 mb-4">
+      <button onclick="loadSubmissions('mdc')" class="bg-indigo-600 px-4 py-2 rounded text-white hover:bg-indigo-700">Review MDC</button>
+      <button onclick="loadSubmissions('fdc')" class="bg-green-600 px-4 py-2 rounded text-white hover:bg-green-700">Review FDC</button>
+    </div>
+
+    <div id="reviewContainer" class="space-y-8"></div>
+  </main>
+
+  <div id="footer"></div>
+
+  <script>
+    fetch('/metaldrug.com/includes/header.html').then(res => res.text()).then(data => document.getElementById('header').innerHTML = data);
+    fetch('/metaldrug.com/includes/footer.html').then(res => res.text()).then(data => document.getElementById('footer').innerHTML = data);
+
+    function loadSubmissions(type) {
+      const container = document.getElementById('reviewContainer');
+      container.innerHTML = '<p class="text-gray-400">Loading ' + type.toUpperCase() + ' submissions...</p>';
+      fetch(`/metaldrug.com/scripts/${type}_tier2_submissions.json`)
+        .then(res => res.json())
+        .then(subs => {
+          container.innerHTML = '';
+          subs.forEach((s, i) => {
+            container.innerHTML += `
+              <div class="p-6 bg-gray-800 rounded shadow">
+                <h2 class="text-xl font-bold text-${type === 'mdc' ? 'indigo' : 'green'}-400 mb-2">[${type.toUpperCase()} #${i + 1}] ${s.name}</h2>
+                <pre class="bg-gray-900 p-4 text-sm overflow-x-auto rounded">${JSON.stringify(s.logic, null, 2)}</pre>
+                <textarea id="note-${type}-${i}" placeholder="Enter reviewer notes..."
+                  class="w-full mt-3 p-2 bg-gray-700 text-white rounded"></textarea>
+                <div class="flex gap-3 mt-4">
+                  <button onclick="submitDecision('${type}', ${i}, 'approved')"
+                    class="bg-blue-600 px-3 py-1 rounded text-white hover:bg-blue-700">Approve</button>
+                  <button onclick="submitDecision('${type}', ${i}, 'request_edits')"
+                    class="bg-yellow-500 px-3 py-1 rounded text-black hover:bg-yellow-600">Request Edits</button>
+                  <button onclick="submitDecision('${type}', ${i}, 'rejected')"
+                    class="bg-red-600 px-3 py-1 rounded text-white hover:bg-red-700">Reject</button>
+                </div>
+              </div>
+            `;
+          });
+        });
+    }
+
+    function submitDecision(type, index, decision) {
+      const note = document.getElementById(`note-${type}-${index}`).value;
+      fetch(`/metaldrug.com/scripts/review_${type}_tier2_decision.php`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ index, decision, note })
+      })
+      .then(res => res.text())
+      .then(msg => alert(`${type.toUpperCase()} Submission #${index + 1}: ${msg}`))
+      .catch(err => alert('Submission failed: ' + err));
+    }
+  </script>
+</body>
+</html>

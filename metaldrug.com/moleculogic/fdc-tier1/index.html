@@ -1,0 +1,40 @@
+<!-- index.html - FDC Tier 1 Logic Submission Portal -->
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FDC Tier 1 - Blueprint Submission</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-100 font-sans">
+
+  <!-- Header -->
+  <div id="header"></div>
+
+  <!-- Main -->
+  <main class="max-w-4xl mx-auto p-6 space-y-6">
+    <h1 class="text-3xl font-bold text-indigo-700 dark:text-indigo-300">Functional Drug Complex (FDC) - Tier 1</h1>
+    <p class="text-gray-600 dark:text-gray-400">Submit logic blueprints for entropy scoring, validation, and overlay rendering.</p>
+
+    <form id="fdc-blueprint-form" class="space-y-4">
+      <textarea id="fdc-blueprint-input" rows="6" class="w-full p-3 border dark:border-gray-700 rounded" placeholder="Enter FDC logic blueprint..."></textarea>
+      <button type="submit" class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded">Validate Blueprint</button>
+    </form>
+
+    <div id="fdc-validation-result" class="text-sm mt-2"></div>
+    <div id="fdc-overlay" class="mt-6 border-t pt-4 border-gray-300 dark:border-gray-700"></div>
+  </main>
+
+  <!-- Footer -->
+  <div id="footer"></div>
+
+  <!-- Scripts -->
+  <script type="module" src="./scripts/fdc_submit.js"></script>
+  <script>
+    fetch("/shared/header.html").then(res => res.text()).then(html => document.getElementById("header").innerHTML = html);
+    fetch("/shared/footer.html").then(res => res.text()).then(html => document.getElementById("footer").innerHTML = html);
+  </script>
+
+</body>
+</html>

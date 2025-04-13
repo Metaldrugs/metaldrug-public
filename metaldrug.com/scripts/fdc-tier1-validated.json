@@ -1,0 +1,28 @@
+[
+  {
+    "title": "FDC Blueprint - Antiviral Scaffold A1",
+    "data": {
+      "ligand": "Peptoid-X5",
+      "cofactor": "Zn2+",
+      "affinityTarget": "Viral Protein P23",
+      "activationpH": 6.8,
+      "entropyScore": 0.94,
+      "riskScore": 0.18,
+      "deliveryMode": "Exosomal",
+      "status": "validated"
+    }
+  },
+  {
+    "title": "FDC Blueprint - NeuroShield N7",
+    "data": {
+      "ligand": "Poly-L-Ornithine",
+      "cofactor": "Fe3+",
+      "affinityTarget": "Tau Aggregates",
+      "activationpH": 7.2,
+      "entropyScore": 0.91,
+      "riskScore": 0.12,
+      "deliveryMode": "Neural Patch",
+      "status": "validated"
+    }
+  }
+]

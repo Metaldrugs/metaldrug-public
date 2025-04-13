@@ -1,0 +1,67 @@
+<!-- mdc-tier1.html -->
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MDC Tier 1 Access - Moleculogic</title>
+  <link rel="stylesheet" href="css/tier1-theme.css" />
+  <script defer src="js/tier1-blueprint.js"></script>
+</head>
+<body>
+
+  <header>
+    <h1 class="text-3xl font-bold text-center my-6">MDC Tier 1: Blueprint Submission Portal</h1>
+  </header>
+
+  <main class="max-w-3xl mx-auto p-6 bg-gray-800 rounded">
+    <form id="token-form">
+      <label for="nda-token">NDA Access Token</label>
+      <input type="text" id="nda-token" name="nda-token" required />
+      <button type="submit">Verify Token</button>
+      <div id="token-result"></div>
+    </form>
+
+    <form id="blueprint-form" class="hidden mt-8">
+      <label for="blueprint_id">Blueprint ID</label>
+      <input type="text" id="blueprint_id" name="blueprint_id" required />
+
+      <label for="therapeutic_focus">Therapeutic Focus</label>
+      <input type="text" id="therapeutic_focus" name="therapeutic_focus" required />
+
+      <label for="metal_core">Metal Core</label>
+      <select id="metal_core" name="metal_core">
+        <option>Iron</option>
+        <option>Zinc</option>
+        <option>Cobalt</option>
+        <option>Scandium</option>
+        <option>Custom</option>
+      </select>
+
+      <label for="trigger_mechanism">Trigger Mechanism</label>
+      <input type="text" id="trigger_mechanism" name="trigger_mechanism" />
+
+      <label for="logic_gate">Logic Gate</label>
+      <select id="logic_gate" name="logic_gate">
+        <option>AND</option>
+        <option>OR</option>
+        <option>NOT</option>
+        <option>XOR</option>
+        <option>Custom</option>
+      </select>
+
+      <button type="submit">Submit Blueprint</button>
+      <div id="submission-status"></div>
+    </form>
+  </main>
+
+  <footer class="text-center mt-12 text-gray-500 text-sm">
+    &copy; <span id="year"></span> Kunfirm Technologies. Tier 1 logic access governed under NDA.
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+
+</body>
+</html>

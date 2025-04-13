@@ -1,0 +1,73 @@
+<!-- review_tier2_submissions.html -->
+<!--
+  Summary:
+  FDC Tier 2 Review Panel: Displays pending Tier 2 logic upgrades for approval or rejection.
+  Each action triggers backend email notifications and updates submission status.
+  Located at: /moleculogic/fdc-tier2/review_tier2_submissions.html
+-->
+
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FDC Tier 2 Review Panel</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-900 text-gray-100">
+  <div id="header"></div>
+
+  <main class="max-w-5xl mx-auto p-6">
+    <h1 class="text-3xl font-bold text-indigo-400 mb-4">FDC Tier 2 Submissions Review</h1>
+    <p class="text-gray-400 mb-6">This interface displays submitted FDC Tier 2 logic sets pending admin review. Approvals or rejections will be emailed to the submitter automatically.</p>
+
+    <div id="reviewTable" class="space-y-4"></div>
+  </main>
+
+  <div id="footer"></div>
+
+  <script>
+    fetch('/metaldrug.com/includes/header.html')
+      .then(res => res.text())
+      .then(data => document.getElementById('header').innerHTML = data);
+
+    fetch('/metaldrug.com/includes/footer.html')
+      .then(res => res.text())
+      .then(data => document.getElementById('footer').innerHTML = data);
+
+    fetch('/scripts/fdc_tier2_submissions.csv')
+      .then(res => res.text())
+      .then(csv => {
+        const rows = csv.trim().split('\n').slice(1); // skip header
+        const container = document.getElementById('reviewTable');
+        rows.forEach((row, i) => {
+          const [timestamp, name, email, content] = row.split(',');
+          const card = document.createElement('div');
+          card.className = 'bg-gray-800 p-4 rounded border border-gray-700';
+
+          card.innerHTML = `
+            <p><strong>Name:</strong> ${name}</p>
+            <p><strong>Email:</strong> ${email}</p>
+            <p><strong>Time:</strong> ${timestamp}</p>
+            <pre class="bg-gray-900 p-2 mt-2 rounded overflow-auto">${content}</pre>
+            <div class="mt-3 space-x-2">
+              <button onclick="processSubmission('${name}', '${email}', 'approve')" class="bg-green-600 px-3 py-1 rounded">Approve</button>
+              <button onclick="processSubmission('${name}', '${email}', 'reject')" class="bg-red-600 px-3 py-1 rounded">Reject</button>
+            </div>
+          `;
+          container.appendChild(card);
+        });
+      });
+
+    function processSubmission(name, email, action) {
+      fetch('/scripts/process_tier2_review.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email, action, tier: 'FDC' })
+      })
+      .then(res => res.text())
+      .then(msg => alert(msg));
+    }
+  </script>
+</body>
+</html>

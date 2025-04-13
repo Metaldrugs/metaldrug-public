@@ -1,0 +1,55 @@
+<!-- documentation.html - Moleculogic Tier 1 Documentation -->
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Moleculogic Tier 1 - Documentation</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    fetch('/metaldrug.com/header.html')
+      .then(res => res.text())
+      .then(html => document.getElementById('header').innerHTML = html);
+    fetch('/metaldrug.com/footer.html')
+      .then(res => res.text())
+      .then(html => document.getElementById('footer').innerHTML = html);
+  </script>
+</head>
+<body class="bg-gray-900 text-gray-100">
+  <div id="header"></div>
+
+  <main class="px-6 py-12 max-w-5xl mx-auto">
+    <h1 class="text-3xl font-bold text-indigo-400 mb-6">Tier 1 Documentation</h1>
+    <p class="text-gray-300 mb-4">This section outlines how to use the Tier 1 tools within Moleculogic for MDC logic validation, simulation, and blueprint refinement.</p>
+
+    <div class="space-y-8">
+      <section>
+        <h2 class="text-xl font-semibold text-indigo-300">1. Blueprint Explorer</h2>
+        <p class="text-gray-400">The explorer lets you scan through existing molecular logic blueprints. It shows the title, coordination type, logic conditions, and status tags.</p>
+      </section>
+
+      <section>
+        <h2 class="text-xl font-semibold text-indigo-300">2. Ligand Simulator</h2>
+        <p class="text-gray-400">This tool allows interactive input of ligand coordination, pH range, reactivity logic, and outputs simulation feedback such as binding class, entropy, and instability warnings.</p>
+      </section>
+
+      <section>
+        <h2 class="text-xl font-semibold text-indigo-300">3. Saving and Promoting Blueprints</h2>
+        <p class="text-gray-400">Validated blueprints can be saved for future retrieval and comparison. Those scoring above threshold (Tier 2-Ready) can be promoted with admin or system verification.</p>
+      </section>
+
+      <section>
+        <h2 class="text-xl font-semibold text-indigo-300">4. Access Control</h2>
+        <p class="text-gray-400">Tier 1 features are NDA-gated. Access control is based on email-linked tokens validated via the NDA handler system. If a user is not approved, simulation is disabled.</p>
+      </section>
+
+      <section>
+        <h2 class="text-xl font-semibold text-indigo-300">5. FDC Compatibility</h2>
+        <p class="text-gray-400">While Tier 1 is currently focused on MDC, selected functions will soon support FDC blueprint logic (ligands, peptide chains, synthetic proteins). Documentation will evolve accordingly.</p>
+      </section>
+    </div>
+  </main>
+
+  <div id="footer"></div>
+</body>
+</html>

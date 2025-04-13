@@ -1,0 +1,55 @@
+<!-- Moleculogic - NDA Review Panel -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>NDA Submission Review</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="header">
+    <h1>NDA Review Dashboard</h1>
+    <p>Internal use only - validate and approve NDA requests for Tier 1 access.</p>
+  </header>
+
+  <main class="main">
+    <section>
+      <h2>Pending Submissions</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Affiliation</th>
+            <th>Purpose</th>
+            <th>NDA File</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody id="submissionTable">
+          <!-- Dynamic rows inserted by JavaScript or backend -->
+        </tbody>
+      </table>
+    </section>
+
+    <section class="controls">
+      <button class="btn" onclick="approveSelected()">Approve</button>
+      <button class="btn danger" onclick="rejectSelected()">Reject</button>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>&copy; 2025 Moleculogic Confidential - Reviewer access only</p>
+  </footer>
+
+  <script>
+    function approveSelected() {
+      alert("Approved - system integration pending.");
+    }
+
+    function rejectSelected() {
+      alert("Rejected - system integration pending.");
+    }
+  </script>
+</body>
+</html>

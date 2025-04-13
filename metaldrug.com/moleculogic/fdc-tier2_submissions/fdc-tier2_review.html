@@ -1,0 +1,73 @@
+<!-- fdc-tier2_review.html -->
+<!--
+  Summary:
+  Admin portal to review, approve, or reject FDC logic blueprints submitted for Tier 2.
+-->
+
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FDC Tier 2 Review Portal</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-950 text-gray-100 font-sans">
+  <div class="p-6 max-w-6xl mx-auto">
+    <h1 class="text-3xl font-bold text-indigo-400 mb-6">FDC Tier 2: Review Pending Logic</h1>
+    <div id="reviewContainer" class="space-y-4"></div>
+  </div>
+
+  <script>
+    async function loadPending() {
+      const res = await fetch('list_pending_logic_fdc.php');
+      const files = await res.json();
+
+      const container = document.getElementById('reviewContainer');
+      if (!files.length) {
+        container.innerHTML = '<p class="text-gray-400">No pending logic submissions.</p>';
+        return;
+      }
+
+      for (const file of files) {
+        const logicRes = await fetch('pending/' + file);
+        const logicData = await logicRes.text();
+
+        const section = document.createElement('div');
+        section.className = 'border border-gray-700 rounded p-4 bg-gray-900';
+        section.innerHTML = `
+          <h2 class="text-xl font-semibold text-white">${file}</h2>
+          <pre class="bg-gray-800 text-sm p-3 rounded overflow-x-auto mt-2 text-green-300">${logicData}</pre>
+          <div class="mt-4 space-x-4">
+            <button onclick="approveLogic('${file}')" class="bg-green-600 px-4 py-2 rounded text-white hover:bg-green-700">Approve</button>
+            <button onclick="rejectLogic('${file}')" class="bg-red-600 px-4 py-2 rounded text-white hover:bg-red-700">Reject</button>
+          </div>
+        `;
+        container.appendChild(section);
+      }
+    }
+
+    async function approveLogic(name) {
+      const res = await fetch('approve_logic_fdc.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: `name=${encodeURIComponent(name)}`
+      });
+      alert(await res.text());
+      location.reload();
+    }
+
+    async function rejectLogic(name) {
+      const res = await fetch('reject_logic_fdc.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: `name=${encodeURIComponent(name)}`
+      });
+      alert(await res.text());
+      location.reload();
+    }
+
+    loadPending();
+  </script>
+</body>
+</html>

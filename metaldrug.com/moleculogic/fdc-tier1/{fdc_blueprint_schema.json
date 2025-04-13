@@ -1,0 +1,47 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "FDC Logic Blueprint",
+  "description": "Schema for validating functional drug complex logic designs",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "Title or name of the blueprint"
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "description": "Semantic version of the logic file"
+    },
+    "components": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "type": { "type": "string", "enum": ["ligand", "rna", "protein"] },
+          "label": { "type": "string" },
+          "properties": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "required": ["id", "type", "label"]
+      }
+    },
+    "connections": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "from": { "type": "string" },
+          "to": { "type": "string" },
+          "type": { "type": "string" },
+          "strength": { "type": "number" }
+        },
+        "required": ["from", "to"]
+      }
+    }
+  },
+  "required": ["title", "version", "components", "connections"]
+}

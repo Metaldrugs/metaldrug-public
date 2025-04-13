@@ -1,0 +1,80 @@
+<!-- security.html - Simulation Security Overview -->
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Simulation Security Overview | MetalDrug</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { darkMode: 'class' };
+  </script>
+</head>
+<body class="bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 font-sans">
+
+  <!-- Header -->
+  <div id="site-header"></div>
+
+  <main class="px-6 py-20 max-w-6xl mx-auto">
+    <h1 class="text-4xl font-bold text-indigo-700 dark:text-indigo-400 mb-6">Simulation Security Overview</h1>
+
+    <p class="text-lg text-gray-700 dark:text-gray-300 mb-10">
+      Moleculogic is designed for high-integrity simulation and blueprint validation. Our platform ensures that logic, data, and simulation access are protected at every level—from source control to simulation export.
+    </p>
+
+    <section class="space-y-16">
+
+      <div>
+        <h2 class="text-2xl font-semibold text-indigo-600 dark:text-indigo-300 mb-2">🔐 Credentialed Simulation Access</h2>
+        <p class="text-gray-700 dark:text-gray-300">
+          All users must pass NDA credentialing before accessing simulation layers beyond Tier 0. Access is permissioned, encrypted, and monitored, with strict logging of blueprint ID, simulation runtime, and output interaction class.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="text-2xl font-semibold text-indigo-600 dark:text-indigo-300 mb-2">🧬 Output Integrity & Fingerprinting</h2>
+        <p class="text-gray-700 dark:text-gray-300">
+          Every logic output is cryptographically hashed and timestamped. Moleculogic maintains a registry of blueprint signatures and audit logs, ensuring you can verify authorship and prevent third-party replication or tampering.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="text-2xl font-semibold text-indigo-600 dark:text-indigo-300 mb-2">📊 Data Security & Encryption</h2>
+        <p class="text-gray-700 dark:text-gray-300">
+          Simulation data is stored in encrypted silos and redacted for export unless explicitly requested under a secure token. No user has access to the logic engine source code or overlay scoring models.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="text-2xl font-semibold text-indigo-600 dark:text-indigo-300 mb-2">📎 Internal Integrity Checks</h2>
+        <p class="text-gray-700 dark:text-gray-300">
+          All simulation runs are validated against predefined entropy, pH, redox, and logic flow constraints. Unusual interactions, synthetic anomalies, or simulation instability are flagged for review before export.
+        </p>
+      </div>
+
+    </section>
+
+    <!-- CTA -->
+    <div class="mt-20 text-center">
+      <h3 class="text-2xl font-bold text-indigo-700 dark:text-indigo-400 mb-4">Security Is Built In, Not Bolted On</h3>
+      <p class="text-gray-700 dark:text-gray-300 mb-6">
+        All partners receive an access security profile. NDA review is required to advance simulation tiers.
+      </p>
+      <a href="/nda_handler/nda_request_form.html" class="bg-indigo-600 text-white px-6 py-3 rounded hover:bg-indigo-700">Request Secure Access</a>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <div id="site-footer"></div>
+
+  <script>
+    fetch('/includes/header.html')
+      .then(res => res.text())
+      .then(data => document.getElementById('site-header').innerHTML = data);
+
+    fetch('/includes/footer.html')
+      .then(res => res.text())
+      .then(data => document.getElementById('site-footer').innerHTML = data);
+  </script>
+</body>
+</html>

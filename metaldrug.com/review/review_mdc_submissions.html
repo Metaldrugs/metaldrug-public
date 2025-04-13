@@ -1,0 +1,74 @@
+<!-- review_mdc_submissions.html -->
+<!-- 
+  Summary:
+  Admin dashboard to view and manage MDC Tier 2 submissions.
+  Loads all JSON files from /data/submissions_mdc/.
+  Enables approve/reject via POST to process_review_action_mdc.php.
+-->
+
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MDC Tier 2 Review Dashboard</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-950 text-white font-sans">
+  <div class="p-6 max-w-6xl mx-auto">
+    <h1 class="text-3xl font-bold mb-6 text-indigo-400">MDC Tier 2 Submission Review</h1>
+    <div id="submissionsContainer" class="space-y-6"></div>
+  </div>
+
+  <script>
+    async function fetchSubmissions() {
+      const res = await fetch('/data/submissions_mdc/');
+      const text = await res.text();
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(text, 'text/html');
+      const links = [...doc.querySelectorAll('a')].map(a => a.getAttribute('href')).filter(x => x.endsWith('.json'));
+
+      const container = document.getElementById('submissionsContainer');
+      for (const file of links) {
+        const response = await fetch('/data/submissions_mdc/' + file);
+        const data = await response.json();
+        const id = file;
+        const status = data.review?.status || 'pending';
+        const comment = data.review?.comment || '';
+        const logic = JSON.stringify(data.blueprint, null, 2);
+
+        const div = document.createElement('div');
+        div.className = 'p-4 border border-gray-700 rounded bg-gray-800';
+        div.innerHTML = `
+          <h2 class="text-lg font-bold text-indigo-300">ID: ${id}</h2>
+          <pre class="text-xs bg-black text-white p-2 overflow-x-auto mt-2">${logic}</pre>
+          <div class="mt-4">
+            <label class="block mb-1 text-sm text-gray-400">Comment</label>
+            <textarea id="comment-${id}" class="w-full p-2 rounded bg-gray-900 border border-gray-600">${comment}</textarea>
+          </div>
+          <div class="mt-2 flex gap-4">
+            <button onclick="submitReview('${id}', 'approved')" class="bg-green-600 text-white px-4 py-1 rounded">Approve</button>
+            <button onclick="submitReview('${id}', 'rejected')" class="bg-red-600 text-white px-4 py-1 rounded">Reject</button>
+            <span class="ml-4 text-sm text-yellow-300">Status: ${status}</span>
+          </div>
+        `;
+        container.appendChild(div);
+      }
+    }
+
+    async function submitReview(id, status) {
+      const comment = document.getElementById('comment-' + id).value;
+      const response = await fetch('/review/process_review_action_mdc.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id, status, comment })
+      });
+      const result = await response.json();
+      alert(result.success ? 'Review submitted.' : 'Error: ' + result.error);
+      location.reload();
+    }
+
+    fetchSubmissions();
+  </script>
+</body>
+</html>

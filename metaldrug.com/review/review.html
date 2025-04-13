@@ -1,0 +1,101 @@
+<!-- review.html -->
+<!-- Summary:
+Unified admin panel for reviewing Tier 2 submissions.
+Supports MDC and FDC via toggle selector and dynamic display.
+-->
+
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tier 2 Review Panel</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-900 text-white p-6 font-sans">
+  <h1 class="text-3xl font-bold text-indigo-400 mb-4">Tier 2 Review Dashboard</h1>
+
+  <!-- Module Switcher -->
+  <div class="mb-6">
+    <label class="block text-sm mb-2">Select Review Pipeline:</label>
+    <select id="reviewModule" onchange="loadSubmissionList()" class="p-2 text-black rounded">
+      <option value="mdc">MDC</option>
+      <option value="fdc">FDC</option>
+    </select>
+  </div>
+
+  <!-- Submission Selector -->
+  <div class="mb-6">
+    <label class="block mb-2">Choose a Submission ID:</label>
+    <select id="submissionSelector" class="p-2 text-black rounded w-full" onchange="loadSubmissionData()">
+      <option disabled selected>-- Select a Submission --</option>
+    </select>
+  </div>
+
+  <!-- Metadata & Blueprint Display -->
+  <div id="submissionData" class="bg-gray-800 p-4 rounded shadow hidden">
+    <h2 class="text-lg font-semibold mb-2">Blueprint Metadata</h2>
+    <pre id="metadataPreview" class="text-sm mb-4 bg-gray-700 p-2 rounded overflow-x-auto"></pre>
+
+    <h2 class="text-lg font-semibold mb-2">Blueprint Content</h2>
+    <pre id="blueprintPreview" class="text-sm bg-gray-700 p-2 rounded overflow-x-auto"></pre>
+
+    <!-- Review Action -->
+    <div class="mt-6">
+      <label class="block mb-2 font-semibold">Review Comment:</label>
+      <textarea id="reviewComment" class="w-full p-2 rounded text-black mb-4" rows="3" placeholder="Notes for submitter..."></textarea>
+
+      <div class="flex space-x-4">
+        <button onclick="submitReview('approved')" class="bg-green-600 px-4 py-2 rounded">Approve</button>
+        <button onclick="submitReview('rejected')" class="bg-red-600 px-4 py-2 rounded">Reject</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    async function loadSubmissionList() {
+      const module = document.getElementById('reviewModule').value;
+      const dir = `/metaldrug.com/data/submissions_${module}/`;
+      const selector = document.getElementById('submissionSelector');
+      selector.innerHTML = '<option disabled selected>-- Loading --</option>';
+
+      try {
+        const res = await fetch(`/scripts/list_submissions.php?module=${module}`);
+        const files = await res.json();
+        selector.innerHTML = files.map(file => `<option value="${file}">${file}</option>`).join('');
+      } catch (err) {
+        selector.innerHTML = `<option disabled>Error loading files</option>`;
+      }
+    }
+
+    async function loadSubmissionData() {
+      const id = document.getElementById('submissionSelector').value;
+      const module = document.getElementById('reviewModule').value;
+      const res = await fetch(`/metaldrug.com/data/submissions_${module}/${id}`);
+      const data = await res.json();
+
+      document.getElementById('metadataPreview').textContent = JSON.stringify(data.metadata, null, 2);
+      document.getElementById('blueprintPreview').textContent = JSON.stringify(data.blueprint, null, 2);
+      document.getElementById('submissionData').classList.remove('hidden');
+    }
+
+    async function submitReview(status) {
+      const id = document.getElementById('submissionSelector').value;
+      const module = document.getElementById('reviewModule').value;
+      const comment = document.getElementById('reviewComment').value;
+
+      const response = await fetch(`/metaldrug.com/review/process_review_action_${module}.php`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id, status, comment })
+      });
+
+      const result = await response.json();
+      alert(result.success ? 'Action completed.' : 'Error: ' + result.error);
+    }
+
+    // Auto-load MDC on start
+    window.addEventListener('DOMContentLoaded', () => loadSubmissionList());
+  </script>
+</body>
+</html>

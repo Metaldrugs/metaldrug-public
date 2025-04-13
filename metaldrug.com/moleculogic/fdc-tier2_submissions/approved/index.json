@@ -1,0 +1,16 @@
+[
+  {
+    "name": "FDC-NeuroLogic-X1",
+    "filename": "FDC_NeuroLogic_X1.json",
+    "description": "FDC logic targeting neurochemical regulation via peptide-coordinated ligands.",
+    "approved_by": "admin@metaldrug.com",
+    "approved_date": "2025-04-15"
+  },
+  {
+    "name": "FDC-AntiViral-Z2",
+    "filename": "FDC_AntiViral_Z2.json",
+    "description": "FDC antiviral candidate optimized for surface binding + ROS neutralization.",
+    "approved_by": "admin@metaldrug.com",
+    "approved_date": "2025-04-15"
+  }
+]

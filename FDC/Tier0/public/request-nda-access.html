@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Request NDA Access - FDC</title>
+  <link rel="stylesheet" href="fdc_styles.css">
+</head>
+<body>
+  <header>
+    <h1>Request NDA Access</h1>
+    <p>To access confidential research, documents, or simulation data, please submit a formal NDA request.</p>
+  </header>
+
+  <main>
+    <form action="https://aws-secure-endpoint.example.com/fdc-nda-request" method="POST">
+      <label for="fullname">Full Name:</label><br>
+      <input type="text" id="fullname" name="fullname" required><br><br>
+
+      <label for="org">Affiliated Organization:</label><br>
+      <input type="text" id="org" name="organization" required><br><br>
+
+      <label for="email">Official Email Address:</label><br>
+      <input type="email" id="email" name="email" required><br><br>
+
+      <label for="purpose">Reason for Request (brief):</label><br>
+      <textarea id="purpose" name="purpose" rows="5" required></textarea><br><br>
+
+      <input type="submit" value="Submit NDA Request">
+    </form>
+  </main>
+
+  <footer>
+    &copy; 2025 Kunfirm Technologies - Confidential Access Protocol Active.
+  </footer>
+</body>
+</html>

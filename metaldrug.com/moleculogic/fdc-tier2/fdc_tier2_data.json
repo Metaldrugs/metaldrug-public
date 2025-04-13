@@ -1,0 +1,23 @@
+[
+  {
+    "title": "FDC-A1: Adaptive Peptide Logic",
+    "author": "KT BioLogic Team",
+    "summary": "A Tier 2 FDC blueprint for ligand-gated neural delivery with AI-determined entropy thresholds.",
+    "entropy_score": 0.52,
+    "approval_status": "approved"
+  },
+  {
+    "title": "FDC-B7: Hybrid RNA-Protein Delivery System",
+    "author": "Moleculogic FDC Devs",
+    "summary": "Tier 2 logic validating a modular RNA binder with protein signaling enhancement.",
+    "entropy_score": 0.78,
+    "approval_status": "approved"
+  },
+  {
+    "title": "FDC-Test: Incomplete Logic",
+    "author": "Test Agent",
+    "summary": "For demonstration only. Requires validation and admin review.",
+    "entropy_score": 0.85,
+    "approval_status": "pending"
+  }
+]

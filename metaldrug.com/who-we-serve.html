@@ -1,0 +1,91 @@
+<!-- who-we-serve.html - MetalDrug Stakeholder Page -->
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Who We Serve | MetalDrug</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { darkMode: 'class' };
+  </script>
+</head>
+<body class="bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-100 font-sans">
+
+  <!-- Header -->
+  <div id="site-header"></div>
+
+  <main class="px-6 py-20 max-w-6xl mx-auto">
+    <h1 class="text-4xl font-bold text-indigo-700 dark:text-indigo-400 mb-6">Who We Serve</h1>
+
+    <p class="text-lg text-gray-700 dark:text-gray-300 mb-10">
+      MetalDrug isn't just building a product. We're establishing a new foundation for collaborative therapeutic logic, molecular design, and programmable biochemistry.
+    </p>
+
+    <section class="space-y-16">
+      <div>
+        <h2 class="text-2xl font-semibold text-indigo-600 dark:text-indigo-300 mb-4">Biopharma Innovators</h2>
+        <p class="text-gray-700 dark:text-gray-300">
+          From early-stage discovery teams to enterprise-scale pipelines, we provide simulation-powered infrastructure to validate and co-develop compounds through tiered logic licensing. Our system is modular and milestone-ready, enabling both stand-alone therapeutic licensing and Moleculogic-as-a-Service integration.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="text-2xl font-semibold text-indigo-600 dark:text-indigo-300 mb-4">Academic Researchers</h2>
+        <p class="text-gray-700 dark:text-gray-300">
+          Moleculogic offers a controlled and auditable simulation layer ideal for researchers needing real-world logic testing, compound optimization, or grant-ready infrastructure. Tier 1 and Tier 2 access support publication, reproducibility, and novel methodology validation across therapeutic classes.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="text-2xl font-semibold text-indigo-600 dark:text-indigo-300 mb-4">Biotech Startups & Founders</h2>
+        <p class="text-gray-700 dark:text-gray-300">
+          Need your own molecules but not your own lab? We provide blueprint leasing and startup-friendly licensing models that allow rapid proof-of-concept generation using Moleculogic’s infrastructure. Build the science first. Spin out with IP that’s already simulation-certified.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="text-2xl font-semibold text-indigo-600 dark:text-indigo-300 mb-4">Therapeutic Alliances & CROs</h2>
+        <p class="text-gray-700 dark:text-gray-300">
+          We support clinical-stage and outsourced research organizations in streamlining candidate selection, reducing false positives, and anchoring mechanistic logic for regulatory pathways. Simulation output can be ported directly into CRO workflows under NDA.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="text-2xl font-semibold text-indigo-600 dark:text-indigo-300 mb-4">Synthetic Biology & Materials Teams</h2>
+        <p class="text-gray-700 dark:text-gray-300">
+          Moleculogic isn't limited to classic pharma. Our programmable logic engine extends to metal-coordinated structures, peptide logic, ligand-guided reactivity, and functional materials. If you're building programmable systems, we give you the biochemical logic map.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="text-2xl font-semibold text-indigo-600 dark:text-indigo-300 mb-4">Regulatory & Compliance-Driven Teams</h2>
+        <p class="text-gray-700 dark:text-gray-300">
+          Moleculogic logic blueprints are auditable, versioned, and reproducible. Simulation artifacts are traceable and risk-flagged. Ideal for preparing IND packages, regulatory briefs, or public-private data partnerships.
+        </p>
+      </div>
+    </section>
+
+    <!-- Call to Action -->
+    <div class="mt-16 text-center">
+      <h3 class="text-2xl font-bold text-indigo-700 dark:text-indigo-400 mb-4">If you're building the future of therapeutics—we’re building the logic behind it.</h3>
+      <a href="/licensing-form.html" class="bg-indigo-600 text-white px-6 py-3 rounded hover:bg-indigo-700">
+        Partner With Us
+      </a>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <div id="site-footer"></div>
+
+  <script>
+    fetch('/includes/header.html')
+      .then(res => res.text())
+      .then(data => document.getElementById('site-header').innerHTML = data);
+
+    fetch('/includes/footer.html')
+      .then(res => res.text())
+      .then(data => document.getElementById('site-footer').innerHTML = data);
+  </script>
+</body>
+</html>

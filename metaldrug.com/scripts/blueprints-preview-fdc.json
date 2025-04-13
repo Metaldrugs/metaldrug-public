@@ -1,0 +1,34 @@
+{
+  "blueprints": [
+    {
+      "name": "NeuroReg-FDC",
+      "description": "Functional peptide complex targeting synaptic repair via controlled neuropeptide release under localized ROS.",
+      "logic": {
+        "type": "FDC",
+        "primary_components": [
+          "Neurotensin peptide",
+          "PEGylated carrier"
+        ],
+        "activation_trigger": "ROS > 0.2 mM",
+        "delivery_mechanism": "encapsulated peptide-nanoparticle hybrid",
+        "stability_profile": "stable in plasma, cleaved in neuroinflammation zones",
+        "confidence_score": 0.88
+      }
+    },
+    {
+      "name": "ImmunoMod-FDC",
+      "description": "Immunomodulatory RNA-ligand fusion designed for selective Treg cell activation in autoimmune pathways.",
+      "logic": {
+        "type": "FDC",
+        "components": [
+          "miRNA-210 mimic",
+          "Folic acid ligand"
+        ],
+        "target_cell": "CD4+CD25+ Tregs",
+        "expression_window": "0\u201312 hr peak post-injection",
+        "co-delivery_payload": "siRNA silencer for TNF-alpha",
+        "confidence_score": 0.92
+      }
+    }
+  ]
+}

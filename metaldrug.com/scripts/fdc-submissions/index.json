@@ -1,0 +1,20 @@
+[
+  {
+    "name": "Peptide-Encoded Antiviral Scaffold",
+    "file": "peptide_antiviral.json",
+    "date": "2025-04-11",
+    "status": "Unreviewed"
+  },
+  {
+    "name": "RNA-Based Logic Delivery",
+    "file": "rna_logic.json",
+    "date": "2025-04-10",
+    "status": "Unreviewed"
+  },
+  {
+    "name": "Protein-Hybrid NeuroLift",
+    "file": "protein_neurolift.json",
+    "date": "2025-04-09",
+    "status": "Approved"
+  }
+]

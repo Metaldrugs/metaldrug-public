@@ -1,0 +1,38 @@
+<?php
+// File: approve_submission.php
+// Summary:
+// Admin approval handler for FDC Tier 2 logic submissions.
+// Moves validated logic JSON from submissions to the approved folder.
+
+$basePath = __DIR__;
+$submissionsDir = $basePath . '/';
+$approvedDir = $basePath . '/../fdc-tier2_approved/';
+
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+    http_response_code(405);
+    echo json_encode(['status' => 'error', 'message' => 'POST only']);
+    exit;
+}
+
+$data = json_decode(file_get_contents('php://input'), true);
+$filename = basename($data['filename'] ?? '');
+
+if (!$filename || !file_exists($submissionsDir . $filename)) {
+    http_response_code(404);
+    echo json_encode(['status' => 'error', 'message' => 'File not found']);
+    exit;
+}
+
+$source = $submissionsDir . $filename;
+$destination = $approvedDir . $filename;
+
+if (!is_dir($approvedDir)) {
+    mkdir($approvedDir, 0775, true);
+}
+
+if (rename($source, $destination)) {
+    echo json_encode(['status' => 'success', 'message' => 'Submission approved and moved']);
+} else {
+    http_response_code(500);
+    echo json_encode(['status' => 'error', 'message' => 'Failed to move file']);
+}

@@ -1,0 +1,93 @@
+<!-- File: C:\Users\Kunfirm\Downloads\MDC_Root\metaldrug.com\moleculogic\fdc-tier2\review.html -->
+<!-- Updated: FDC Tier 2 Review Panel with Filters + Email Notification -->
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FDC Tier 2 Review</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-950 text-white font-sans">
+  <div id="header"></div>
+  <main class="max-w-5xl mx-auto p-6">
+    <h1 class="text-3xl font-bold mb-6 text-pink-400">FDC Tier 2 Review Panel</h1>
+
+    <div class="mb-4">
+      <label for="statusFilter" class="mr-2">Filter by Status:</label>
+      <select id="statusFilter" class="text-black p-1 rounded">
+        <option value="all">All</option>
+        <option value="Unreviewed">Unreviewed</option>
+        <option value="Approved">Approved</option>
+        <option value="Rejected">Rejected</option>
+      </select>
+    </div>
+
+    <div id="submissionList" class="space-y-6"></div>
+  </main>
+  <div id="footer"></div>
+
+  <script>
+    let submissions = [];
+
+    fetch('/metaldrug.com/includes/header.html').then(r => r.text()).then(t => document.getElementById('header').innerHTML = t);
+    fetch('/metaldrug.com/includes/footer.html').then(r => r.text()).then(t => document.getElementById('footer').innerHTML = t);
+
+    fetch('/metaldrug.com/scripts/fdc-submissions/index.json')
+      .then(r => r.json())
+      .then(data => {
+        submissions = data;
+        renderList();
+      });
+
+    document.getElementById('statusFilter').addEventListener('change', renderList);
+
+    function renderList() {
+      const container = document.getElementById('submissionList');
+      const filter = document.getElementById('statusFilter').value;
+      container.innerHTML = '';
+
+      submissions.forEach(sub => {
+        if (filter !== 'all' && sub.status !== filter) return;
+
+        const card = document.createElement('div');
+        card.className = "p-4 border border-gray-700 rounded bg-gray-900";
+
+        card.innerHTML = `
+          <h2 class="text-xl font-semibold text-pink-300">${sub.name}</h2>
+          <p class="text-gray-400 mb-2">Submitted: ${sub.date}</p>
+          <p class="text-sm text-gray-500 mb-3">Status: <span id="status-${sub.file}" class="text-yellow-400">${sub.status}</span></p>
+          <div class="space-x-4">
+            <a href="/metaldrug.com/scripts/fdc-submissions/${sub.file}" target="_blank" class="text-pink-300 underline">View Submission</a>
+            <button onclick="updateStatus('${sub.file}', 'Approved')" class="px-3 py-1 bg-green-600 rounded">Approve</button>
+            <button onclick="updateStatus('${sub.file}', 'Rejected')" class="px-3 py-1 bg-red-600 rounded">Reject</button>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    function updateStatus(file, status) {
+      fetch('/metaldrug.com/scripts/update_submission_status.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ file, status })
+      })
+      .then(r => r.text())
+      .then(msg => {
+        document.getElementById(`status-${file}`).textContent = status;
+        alert(msg);
+        sendNotificationEmail(file, status);
+      });
+    }
+
+    function sendNotificationEmail(file, status) {
+      fetch('/metaldrug.com/scripts/send_review_email.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ file, status })
+      });
+    }
+  </script>
+</body>
+</html>

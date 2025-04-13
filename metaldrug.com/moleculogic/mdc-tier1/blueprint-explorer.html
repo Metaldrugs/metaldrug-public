@@ -1,0 +1,57 @@
+<!-- blueprint-explorer.html - Moleculogic Tier 1 Blueprint Viewer -->
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blueprint Explorer - Moleculogic Tier 1</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    fetch('/metaldrug.com/header.html')
+      .then(res => res.text())
+      .then(html => document.getElementById('header').innerHTML = html);
+    fetch('/metaldrug.com/footer.html')
+      .then(res => res.text())
+      .then(html => document.getElementById('footer').innerHTML = html);
+  </script>
+</head>
+<body class="bg-gray-900 text-gray-100">
+  <div id="header"></div>
+
+  <main class="px-6 py-12 max-w-6xl mx-auto">
+    <h1 class="text-3xl font-bold text-indigo-400 mb-6">Blueprint Explorer</h1>
+    <p class="mb-4 text-gray-300">Browse submitted or saved MDC Tier 1 logic blueprints. You can inspect coordination patterns, entropy metrics, and proposed molecule behaviors.</p>
+
+    <div id="blueprintList" class="space-y-4">
+      <!-- Dynamically populated list of saved blueprints -->
+    </div>
+
+    <template id="blueprintCard">
+      <div class="p-4 border border-gray-700 rounded bg-gray-800">
+        <h2 class="text-xl font-semibold text-indigo-300">{{title}}</h2>
+        <p class="text-sm text-gray-400">{{summary}}</p>
+        <button class="mt-2 px-3 py-1 bg-indigo-600 text-white text-sm rounded hover:bg-indigo-700">Open Blueprint</button>
+      </div>
+    </template>
+  </main>
+
+  <div id="footer"></div>
+
+  <script>
+    const sampleBlueprints = [
+      { title: "MDC-105A", summary: "Metal-coordinated peptide for neuroactivation study" },
+      { title: "Logic-021X", summary: "Conditional antiviral logic under acidic conditions" }
+    ];
+
+    const container = document.getElementById('blueprintList');
+    const template = document.getElementById('blueprintCard').innerHTML;
+
+    sampleBlueprints.forEach(bp => {
+      const card = template.replace('{{title}}', bp.title).replace('{{summary}}', bp.summary);
+      const div = document.createElement('div');
+      div.innerHTML = card;
+      container.appendChild(div);
+    });
+  </script>
+</body>
+</html>

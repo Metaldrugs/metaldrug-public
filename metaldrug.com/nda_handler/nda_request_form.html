@@ -1,0 +1,69 @@
+<!-- nda_request_form.html - NDA Request Page -->
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Request NDA Access</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { darkMode: 'class' }
+  </script>
+</head>
+<body class="bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-100">
+  <!-- Header -->
+  <header class="flex items-center justify-between px-6 py-4 shadow bg-white dark:bg-gray-800">
+    <a href="/index.html" class="text-xl font-bold text-indigo-600 dark:text-indigo-400">MetalDrug</a>
+    <button onclick="document.documentElement.classList.toggle('dark')" class="text-sm border px-3 py-1 rounded text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700">Toggle Mode</button>
+  </header>
+
+  <!-- NDA Form Section -->
+  <section class="max-w-2xl mx-auto px-6 py-12">
+    <h1 class="text-3xl font-bold mb-4 text-indigo-700 dark:text-indigo-400">Request NDA Access</h1>
+    <p class="text-gray-600 dark:text-gray-300 mb-6">
+      Submit this form to request access to Tier 1 simulation environments. You will receive a secure token for Moleculogic Tier 1 access upon approval.
+    </p>
+
+    <form id="ndaForm" class="space-y-6">
+      <div>
+        <label class="block mb-1 font-semibold" for="name">Full Name</label>
+        <input id="name" name="name" required class="w-full px-4 py-2 rounded border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800" />
+      </div>
+
+      <div>
+        <label class="block mb-1 font-semibold" for="email">Email</label>
+        <input id="email" name="email" type="email" required class="w-full px-4 py-2 rounded border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800" />
+      </div>
+
+      <div>
+        <label class="block mb-1 font-semibold" for="organization">Organization</label>
+        <input id="organization" name="organization" class="w-full px-4 py-2 rounded border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800" />
+      </div>
+
+      <div>
+        <label class="block mb-1 font-semibold" for="reason">Reason for Access</label>
+        <textarea id="reason" name="reason" rows="4" class="w-full px-4 py-2 rounded border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800"></textarea>
+      </div>
+
+      <button type="submit" class="bg-indigo-600 text-white px-6 py-2 rounded hover:bg-indigo-700">Submit NDA Request</button>
+    </form>
+
+    <div id="confirmation" class="hidden mt-6 p-4 border border-green-600 bg-green-50 dark:bg-green-900 dark:text-green-200 rounded">
+      Your NDA request has been submitted. Please check your email for the review link.
+    </div>
+  </section>
+
+  <footer class="px-6 py-6 bg-gray-100 dark:bg-gray-800 text-sm text-gray-600 dark:text-gray-400 text-center">
+    &copy; 2025 MetalDrug Technologies. NDA access is governed by legal review and encrypted token systems.
+  </footer>
+
+  <script>
+    document.getElementById("ndaForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+      document.getElementById("ndaForm").classList.add("hidden");
+      document.getElementById("confirmation").classList.remove("hidden");
+      // Simulate form submission - in live version, submit to backend PHP
+    });
+  </script>
+</body>
+</html>

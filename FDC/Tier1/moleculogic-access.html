@@ -1,0 +1,48 @@
+<!-- moleculogic-access.html for FDC Tier 1 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Moleculogic Access - FDC Tier 1</title>
+  <link rel="stylesheet" href="../public/fdc_styles.css">
+</head>
+<body>
+  <div class="fdc-container">
+    <div include-html="../public/fdc_header.html"></div>
+
+    <main>
+      <h1>Moleculogic Access Portal</h1>
+      <p>As a Tier 1 user, you have limited access to Moleculogic’s SEI-guided logic engine and chemical simulation sandbox for FDC design exploration.</p>
+
+      <section>
+        <h2>Available Functions</h2>
+        <ul>
+          <li>Load predefined FDC logic templates</li>
+          <li>Submit hypothesis via Moleculogic Tier 1 form</li>
+          <li>Request Tier 2 simulation for unstable constructs</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Submit FDC Logic Blueprint</h2>
+        <form action="../../api/submit-tier1.js" method="POST">
+          <label for="compound-name">Compound Name:</label><br>
+          <input type="text" id="compound-name" name="compoundName" required><br><br>
+
+          <label for="blueprint-json">FDC Blueprint Logic (JSON):</label><br>
+          <textarea id="blueprint-json" name="blueprintData" rows="10" required></textarea><br><br>
+
+          <input type="submit" value="Submit Logic">
+        </form>
+        <p>All submissions are logged in the SEI-lite system and evaluated with entropy-risk overlays. Valid entries may be promoted to Tier 2.</p>
+      </section>
+
+      <p>Interested in full simulation control? <a href="../Tier2/request-tier2.html">Request Tier 2 Access</a></p>
+    </main>
+
+    <div include-html="../public/fdc_footer.html"></div>
+  </div>
+
+  <script src="../public/fdc_include.js"></script>
+</body>
+</html>

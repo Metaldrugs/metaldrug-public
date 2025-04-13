@@ -1,0 +1,79 @@
+<!-- deploy_config.html -->
+<!--
+Summary:
+Deployment configuration summary for MDC and FDC Tier 2 logic systems. This page does not contain sensitive information,
+but serves as a public-facing status indicator and routing layer. Links to public GitHub repos and Tier 1 redirectors.
+-->
+
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Deployment Gateway - MetalDrug</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-950 text-gray-100">
+  <header class="p-6 border-b border-gray-800">
+    <h1 class="text-3xl font-bold text-indigo-400">MDC & FDC Deployment Gateway</h1>
+    <p class="text-gray-400">Tier 2 Logic Distribution & Access</p>
+  </header>
+
+  <main class="max-w-4xl mx-auto p-6 space-y-12">
+    <section>
+      <h2 class="text-2xl font-semibold text-indigo-300">Public GitHub Distribution</h2>
+      <p class="text-gray-400">Download latest validator scripts, logic modules, and documentation.</p>
+      <ul class="list-disc list-inside mt-4 text-blue-400">
+        <li><a href="https://github.com/metaldrug/mdc-tier2" class="underline">MDC Tier 2 Repository</a></li>
+        <li><a href="https://github.com/metaldrug/fdc-tier2" class="underline">FDC Tier 2 Repository</a></li>
+      </ul>
+    </section>
+
+    <section>
+      <h2 class="text-2xl font-semibold text-indigo-300">Secure AWS Logic Access</h2>
+      <p class="text-gray-400">Submitters with NDA clearance may upload Tier 2 blueprints via these routes.</p>
+      <ul class="mt-4">
+        <li class="mb-2">
+          <span class="block text-sm text-gray-400">MDC Secure Upload</span>
+          <code class="bg-gray-800 text-green-400 px-2 py-1 rounded">https://aws.metaldrug.com/mdc-tier2/upload</code>
+        </li>
+        <li class="mb-2">
+          <span class="block text-sm text-gray-400">FDC Secure Upload</span>
+          <code class="bg-gray-800 text-green-400 px-2 py-1 rounded">https://aws.metaldrug.com/fdc-tier2/upload</code>
+        </li>
+      </ul>
+    </section>
+
+    <section>
+      <h2 class="text-2xl font-semibold text-indigo-300">Status Dashboard</h2>
+      <p class="text-gray-400">Live tracking for Tier 2 build and validator readiness.</p>
+      <div class="grid grid-cols-2 gap-4 text-sm text-white mt-4">
+        <div class="bg-gray-800 p-4 rounded">
+          <h3 class="font-semibold text-indigo-400">MDC Tier 2</h3>
+          <ul class="list-disc list-inside">
+            <li>Validators: <span class="text-green-400">Ready</span></li>
+            <li>Submission Engine: <span class="text-green-400">Online</span></li>
+            <li>Reviewer Access: <span class="text-yellow-300">In Progress</span></li>
+          </ul>
+        </div>
+        <div class="bg-gray-800 p-4 rounded">
+          <h3 class="font-semibold text-indigo-400">FDC Tier 2</h3>
+          <ul class="list-disc list-inside">
+            <li>Validators: <span class="text-green-400">Ready</span></li>
+            <li>Submission Engine: <span class="text-green-400">Online</span></li>
+            <li>Reviewer Access: <span class="text-yellow-300">In Progress</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="p-6 text-center border-t border-gray-800 text-gray-500 text-sm mt-12">
+    &copy; <span id="year"></span> Kunfirm Technologies. Powered by SEI.
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

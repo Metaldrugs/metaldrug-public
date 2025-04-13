@@ -1,0 +1,59 @@
+<!-- admin_mdc_logs.html -->
+<!--
+  Summary:
+  MDC Tier 2 Logs Viewer for Admin. Lists all submission tokens and filenames.
+  Enables direct viewing of each submission file for audit and traceability.
+-->
+
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MDC Tier 2 - Logs Viewer</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-950 text-gray-100 font-sans p-6">
+  <h1 class="text-3xl font-bold text-indigo-400 mb-6">MDC Tier 2 Submission Logs</h1>
+
+  <div class="bg-gray-900 border border-gray-700 p-4 rounded max-w-5xl">
+    <p class="text-sm text-gray-400 mb-4">Below is a list of all MDC Tier 2 blueprint submission files stored in <code>logic_submissions/</code>.</p>
+    <ul id="logList" class="text-sm space-y-2"></ul>
+  </div>
+
+  <div id="viewerContainer" class="mt-8 hidden max-w-5xl bg-gray-900 border border-gray-700 p-4 rounded">
+    <h2 class="text-xl font-semibold text-indigo-300 mb-2">Logic Content</h2>
+    <pre id="logicViewer" class="bg-gray-800 p-4 rounded text-green-300 text-sm overflow-x-auto"></pre>
+  </div>
+
+  <script>
+    const listEl = document.getElementById('logList');
+    const viewer = document.getElementById('logicViewer');
+    const viewerBox = document.getElementById('viewerContainer');
+
+    fetch('/metaldrug.com/scripts/logic_submissions/index.json')
+      .then(res => res.json())
+      .then(files => {
+        if (!files || files.length === 0) {
+          listEl.innerHTML = '<li class="text-red-400">No submissions found.</li>';
+          return;
+        }
+
+        files.forEach(filename => {
+          const li = document.createElement('li');
+          li.innerHTML = `<button onclick="loadFile('${filename}')" class="text-indigo-400 hover:underline">${filename}</button>`;
+          listEl.appendChild(li);
+        });
+      });
+
+    function loadFile(filename) {
+      fetch('/metaldrug.com/scripts/logic_submissions/' + filename)
+        .then(res => res.json())
+        .then(data => {
+          viewerBox.classList.remove('hidden');
+          viewer.innerText = JSON.stringify(data, null, 2);
+        });
+    }
+  </script>
+</body>
+</html>

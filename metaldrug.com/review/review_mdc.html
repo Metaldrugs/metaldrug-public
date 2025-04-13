@@ -1,0 +1,36 @@
+<!-- review_mdc.html - MDC Tier 2 Review Interface -->
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MDC Tier 2 Submission Review</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="/scripts/mdc_review_admin.js" defer></script>
+</head>
+<body class="bg-gray-950 text-gray-100 font-sans">
+  <header class="p-6 text-center border-b border-gray-800">
+    <h1 class="text-3xl font-bold text-indigo-400">MDC Tier 2 Submissions</h1>
+    <p class="text-gray-400 mt-1">Review and process submitted MDC logic for Tier 2 upgrade requests.</p>
+  </header>
+
+  <main class="max-w-5xl mx-auto p-6">
+    <div class="mb-6">
+      <label class="block text-sm mb-2">Search by Token or Email</label>
+      <input type="text" id="searchQuery" placeholder="Search submissions..." class="w-full p-2 rounded bg-gray-800 border border-gray-600" />
+    </div>
+
+    <div id="submissionList" class="space-y-6">
+      <!-- Blueprint cards dynamically inserted here by JS -->
+    </div>
+  </main>
+
+  <footer class="text-center p-4 border-t border-gray-800 text-gray-500 text-sm">
+    &copy; <span id="year"></span> MDC Tier 2 Review
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

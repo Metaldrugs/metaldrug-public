@@ -1,0 +1,34 @@
+{
+  "components": [
+    {
+      "id": "fdc001",
+      "name": "PeptideBridge-X",
+      "type": "Peptide",
+      "role": "Binding enhancer",
+      "interactions": [
+        "Increases binding affinity with RNA target FDC-A",
+        "Stabilizes hybrid molecule complex"
+      ]
+    },
+    {
+      "id": "fdc002",
+      "name": "RiboSwitch-Z",
+      "type": "RNA Segment",
+      "role": "Conditional logic trigger",
+      "interactions": [
+        "Activates under pH 6.8 in cytoplasm",
+        "Switches conformation with Protein Ligand P9"
+      ]
+    },
+    {
+      "id": "fdc003",
+      "name": "HybridDock-P9",
+      "type": "Protein Ligand",
+      "role": "Signal amplification",
+      "interactions": [
+        "Recruits secondary messengers",
+        "Enhances ligand-dependent cell targeting"
+      ]
+    }
+  ]
+}

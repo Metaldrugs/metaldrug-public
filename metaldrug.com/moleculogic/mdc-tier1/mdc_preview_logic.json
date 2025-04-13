@@ -1,0 +1,30 @@
+[
+  {
+    "title": "NeuroBlocker-7",
+    "author": "kunfirm@metaldrug.com",
+    "description": "Metal-coordinated logic compound targeting synaptic reset in early-stage neurodegeneration.",
+    "logic": {
+      "coordination": "Zn2+",
+      "ligands": ["L-Serine", "Thiazole"],
+      "activation": "pH < 6.8",
+      "delivery": "Nasal route - nanoparticle"
+    },
+    "risk": "Low",
+    "entropy_class": "Stable",
+    "confidence_score": 0.91
+  },
+  {
+    "title": "VirusLogic-Zeta",
+    "author": "kunfirm@metaldrug.com",
+    "description": "A zinc-coordinated fusion inhibitor designed for enveloped viral envelopes.",
+    "logic": {
+      "coordination": "Zn2+",
+      "ligands": ["Imidazole", "Valine"],
+      "activation": "ROS spike",
+      "delivery": "Intravenous - nanoparticle"
+    },
+    "risk": "Moderate",
+    "entropy_class": "Dynamic",
+    "confidence_score": 0.84
+  }
+]

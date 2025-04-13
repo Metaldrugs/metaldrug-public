@@ -1,0 +1,52 @@
+{
+  "blueprints": [
+    {
+      "name": "NeuroShield-MDC",
+      "description": "A coordination framework targeting neuroinflammation pathways via gateable zinc-carrier complexes.",
+      "logic": {
+        "metal": "Zn2+",
+        "ligands": [
+          "Histidine",
+          "Aspartate"
+        ],
+        "gates": {
+          "toxicity_threshold": "< 0.2 \u00b5M",
+          "activation_ph": "6.8-7.2"
+        },
+        "delivery": "nanocarrier + pH sensitive shell",
+        "entropy_score": 0.78
+      }
+    },
+    {
+      "name": "ViroBlocker-MDC",
+      "description": "A viral entry inhibitor programmed through Cu-ligand switching to activate only in high ROS environments.",
+      "logic": {
+        "metal": "Cu+",
+        "ligands": [
+          "Cysteine",
+          "Serine"
+        ],
+        "switch_trigger": "ROS > 0.3 mM",
+        "inhibition_target": "Spike Glycoprotein",
+        "entropy_score": 0.84
+      }
+    },
+    {
+      "name": "OncoFilter-MDC",
+      "description": "Selective cytotoxic complex gated by dual-ligand threshold logic, optimized for hypoxic tumors.",
+      "logic": {
+        "metal": "Fe2+",
+        "ligands": [
+          "Glutamate",
+          "Tyrosine"
+        ],
+        "activation_logic": {
+          "hypoxia_index": "> 1.5",
+          "ligand_ratio": "2:1"
+        },
+        "delivery_mode": "prodrug + selective uptake vector",
+        "entropy_score": 0.91
+      }
+    }
+  ]
+}

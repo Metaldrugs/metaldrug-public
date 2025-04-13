@@ -1,0 +1,143 @@
+<!-- sandbox-enhanced-formatted.html - Advanced Logic Preview Sandbox -->
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sandbox Preview | Moleculogic</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { darkMode: 'class' };
+  </script>
+</head>
+<body class="bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 font-sans">
+
+  <!-- Header -->
+  <div id="site-header"></div>
+
+  <main class="px-6 py-20 max-w-6xl mx-auto">
+    <!-- Gated Access -->
+    <div id="locked" class="text-center">
+      <h1 class="text-3xl font-bold text-indigo-700 dark:text-indigo-400 mb-4">Sandbox Access Portal</h1>
+      <p class="mb-6 text-gray-700 dark:text-gray-300">Enter your access token to enter Moleculogic preview mode.</p>
+      <input type="password" id="tokenInput" placeholder="Enter token" class="px-4 py-2 rounded border border-gray-400 dark:border-gray-700" />
+      <button onclick="checkToken()" class="ml-2 bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700">Unlock</button>
+      <p id="errorMessage" class="text-red-500 mt-4 hidden">Invalid token. Please try again.</p>
+    </div>
+
+    <!-- Sandbox Form -->
+    <div id="sandbox" class="hidden">
+      <h2 class="text-2xl font-semibold text-indigo-700 dark:text-indigo-300 mb-4">Build a Logic Blueprint</h2>
+      <form class="space-y-6">
+        <div><label class="block mb-1">Logic Class</label><select id="logicClass" class="w-full px-4 py-2 rounded border dark:bg-gray-800 dark:border-gray-600">
+          <option>ROS-Sensitive Scaffold</option>
+          <option>pH-Responsive Peptide</option>
+          <option>Charge-Directed Inhibitor</option>
+          <option>Metal-Ligand Fold Switch</option>
+        </select></div>
+        <div><label class="block mb-1">Entropy Class</label><input type="range" min="1" max="5" value="3" class="w-full" id="entropyRange"></div>
+        <div><label class="block mb-1">Binding Coordination</label><select id="coordination" class="w-full px-4 py-2 border rounded dark:bg-gray-800 dark:border-gray-600">
+          <option>Monodentate</option><option>Bidentate</option><option>Tridentate</option><option>Polydentate</option>
+        </select></div>
+        <div><label class="block mb-1">Logic Gate</label><select id="logicGate" class="w-full px-4 py-2 border rounded dark:bg-gray-800 dark:border-gray-600">
+          <option>AND</option><option>OR</option><option>NOT</option><option>IF-THEN</option>
+        </select></div>
+        <div><label class="block mb-1">Target Class</label><select id="targetClass" class="w-full px-4 py-2 border rounded dark:bg-gray-800 dark:border-gray-600">
+          <option>Viral Envelope</option><option>Neuroreceptor</option><option>Immunosuppressant</option><option>Endocrine Modulator</option>
+        </select></div>
+        <div><label class="block mb-1">Metal Core</label><select id="metalCore" class="w-full px-4 py-2 border rounded dark:bg-gray-800 dark:border-gray-600">
+          <option>Zinc</option><option>Iron</option><option>Copper</option><option>None</option>
+        </select></div>
+        <button type="button" onclick="generatePreview()" class="bg-indigo-600 text-white px-6 py-2 rounded hover:bg-indigo-700">Generate Preview</button>
+      </form>
+
+      <!-- Advanced Preview -->
+      <div id="previewOutput" class="mt-12 p-6 border rounded dark:border-gray-700 bg-gray-50 dark:bg-gray-800 hidden">
+        <h3 class="text-xl font-bold text-indigo-600 dark:text-indigo-400 mb-4">Logic Blueprint (Preview Only)</h3>
+        <pre id="outputText" class="text-sm text-gray-800 dark:text-gray-100 whitespace-pre-wrap font-mono"></pre>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <div id="site-footer"></div>
+
+  <script>
+    const token = "mdc_demo_2025";
+
+    function checkToken() {
+      const input = document.getElementById("tokenInput").value;
+      const error = document.getElementById("errorMessage");
+      if (input === token) {
+        document.getElementById("locked").style.display = "none";
+        document.getElementById("sandbox").style.display = "block";
+      } else {
+        error.classList.remove("hidden");
+      }
+    }
+
+    function generatePreview() {
+      const logic = document.getElementById("logicClass").value;
+      const entropy = document.getElementById("entropyRange").value;
+      const bind = document.getElementById("coordination").value;
+      const gate = document.getElementById("logicGate").value;
+      const target = document.getElementById("targetClass").value;
+      const metal = document.getElementById("metalCore").value;
+
+      const metalNote = metal === "Iron" ? "Iron (Fe³⁺ preferred)" : metal;
+
+      const interpreted = `**IF** ${logic.includes("ROS") ? "Reactive Oxygen Species (ROS) levels are elevated" : "stimulus threshold is exceeded"} **${gate}** ${metal === "None" ? "coordination-independent trigger activates" : "metal binding to " + metalNote + " is stable"}  
+**THEN** activate ${bind.toLowerCase()} scaffold for ${target.toLowerCase()} targeting  
+**ONLY IF** entropy cost remains within scaffold logic threshold`;
+
+      const simFlow = `- **Scaffold Activation**: Responsive to ${logic.includes("pH") ? "acidic/basic shift" : "oxidative or charge triggers"}  
+- **Coordination Type**: ${bind} geometry selected  
+- **Logic Gate**: ${gate}-based input pattern  
+- **Targeting Class**: ${target} proximity binding via condition-responsive surfaces`;
+
+      const output = `
+### 🔬 Moleculogic Logic Blueprint (Preview Only)
+
+**Logic Class**: ${logic}  
+**Entropy Class**: ${entropy} / 5  
+**Binding Type**: ${bind}  
+**Logic Gate Type**: ${gate}  
+**Target Class**: ${target}  
+**Metal Core**: ${metalNote}
+
+---
+
+### 🧠 Interpreted Logic Flow
+
+${interpreted}
+
+---
+
+### ⚙️ Simulated Mechanism (Abstract)
+
+${simFlow}
+
+---
+
+### 📊 Preliminary Overlay (SEI-lite)
+
+- entropy_class: moderate  
+- risk_level: low  
+- confidence_score: 0.87
+
+---
+`.trim();
+
+      document.getElementById("outputText").innerText = output;
+      document.getElementById("previewOutput").classList.remove("hidden");
+    }
+
+    fetch('/includes/header.html')
+      .then(res => res.text())
+      .then(data => document.getElementById('site-header').innerHTML = data);
+    fetch('/includes/footer.html')
+      .then(res => res.text())
+      .then(data => document.getElementById('site-footer').innerHTML = data);
+  </script>
+</body>
+</html>

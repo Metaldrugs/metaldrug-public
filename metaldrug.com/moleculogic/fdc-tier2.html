@@ -1,0 +1,46 @@
+<!-- fdc-tier2.html -->
+<!--
+  Summary:
+  FDC Tier 2 Viewer and Simulator. Displays all approved blueprints submitted from Tier 1,
+  and allows dynamic loading and rendering of logic data.
+-->
+
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FDC Tier 2 Viewer</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="/metaldrug.com/moleculogic/fdc-tier2_submissions/fdc-tier2_loader.js" defer></script>
+</head>
+<body class="bg-gray-950 text-gray-100">
+  <div id="header"></div>
+
+  <main class="p-6 max-w-5xl mx-auto">
+    <h1 class="text-3xl font-bold text-indigo-400 mb-4">FDC Tier 2 - Approved Logic Simulator</h1>
+    <p class="mb-6 text-gray-400">
+      Below are logic blueprints that passed Tier 1 validation and were approved for Tier 2 visibility.
+      Select a file to load and simulate its structure.
+    </p>
+
+    <div class="mb-6 p-4 bg-gray-800 rounded border border-gray-700">
+      <label for="fdcLogicSelect" class="block mb-2 text-sm font-semibold">Choose Approved Blueprint:</label>
+      <select id="fdcLogicSelect" class="w-full p-2 rounded bg-gray-900 border border-gray-600 text-white"></select>
+      <div class="mt-4 flex gap-4">
+        <button id="loadBtn" onclick="simulateFDCSelection()" class="bg-indigo-600 px-4 py-2 rounded text-white hover:bg-indigo-700" disabled>Load & Simulate</button>
+        <div id="loaderStatus" class="text-sm text-yellow-400"></div>
+      </div>
+    </div>
+
+    <div id="fdcOutput" class="p-6 bg-gray-900 border border-gray-700 rounded text-sm overflow-auto"></div>
+  </main>
+
+  <div id="footer"></div>
+
+  <script>
+    fetch('/metaldrug.com/includes/header.html').then(r => r.text()).then(d => document.getElementById('header').innerHTML = d);
+    fetch('/metaldrug.com/includes/footer.html').then(r => r.text()).then(d => document.getElementById('footer').innerHTML = d);
+  </script>
+</body>
+</html>

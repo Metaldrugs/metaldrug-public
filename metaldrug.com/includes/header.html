@@ -1,0 +1,31 @@
+<!-- includes/header.html -->
+<header class="flex items-center justify-between px-6 py-4 shadow bg-white dark:bg-gray-800">
+  <a href="/index.html" class="text-xl font-bold text-indigo-600 dark:text-indigo-400">MetalDrug</a>
+  <nav class="hidden md:flex space-x-6 text-sm">
+    <a href="/mdc/index.html" class="hover:text-indigo-600 dark:hover:text-indigo-400">MDC</a>
+    <a href="/fdc/index.html" class="hover:text-indigo-600 dark:hover:text-indigo-400">FDC</a>
+    <a href="/moleculogic/index.html" class="hover:text-indigo-600 dark:hover:text-indigo-400">Moleculogic</a>
+  </nav>
+  <div class="flex items-center space-x-4">
+    <button onclick="toggleDarkMode()" class="text-sm text-gray-600 dark:text-gray-300 border px-3 py-1 rounded hover:bg-gray-200 dark:hover:bg-gray-700">Toggle Mode</button>
+    <button onclick="toggleMenu()" class="menu-btn text-indigo-600 dark:text-indigo-400 md:hidden">☰</button>
+  </div>
+</header>
+<div id="mobileMenu" class="mobile-menu px-6 py-4 md:hidden bg-white dark:bg-gray-800 text-sm">
+  <a href="/mdc/index.html" class="block py-1 hover:text-indigo-600 dark:hover:text-indigo-400">MDC</a>
+  <a href="/fdc/index.html" class="block py-1 hover:text-indigo-600 dark:hover:text-indigo-400">FDC</a>
+  <a href="/moleculogic/index.html" class="block py-1 hover:text-indigo-600 dark:hover:text-indigo-400">Moleculogic</a>
+</div>
+
+<script>
+function toggleMenu() {
+  document.getElementById('mobileMenu').classList.toggle('open');
+}
+function toggleDarkMode() {
+  document.documentElement.classList.toggle('dark');
+  localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+}
+(function () {
+  if (localStorage.getItem('theme') === 'dark') document.documentElement.classList.add('dark');
+})();
+</script>

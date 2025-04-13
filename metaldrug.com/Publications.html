@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Publications | KT-Biotech</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { darkMode: 'class' };
+  </script>
+  <style>
+    .menu-btn { display: none; }
+    @media (max-width: 768px) {
+      .menu-btn { display: inline-block; }
+      .mobile-menu { display: none; }
+      .mobile-menu.open { display: block; }
+    }
+  </style>
+</head>
+<body class="bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-100 font-sans">
+
+  <!-- Navbar -->
+  <header class="flex items-center justify-between px-6 py-4 shadow bg-white dark:bg-gray-800">
+    <a href="/index.html" class="text-xl font-bold text-indigo-600 dark:text-indigo-400">KT-Biotech</a>
+    <nav class="hidden md:flex space-x-6 text-sm">
+      <a href="/mdc/index.html" class="hover:text-indigo-600 dark:hover:text-indigo-400">MDC</a>
+      <a href="/fdc/index.html" class="hover:text-indigo-600 dark:hover:text-indigo-400">FDC</a>
+      <a href="/moleculogic/index.html" class="hover:text-indigo-600 dark:hover:text-indigo-400">Moleculogic</a>
+    </nav>
+    <div class="flex items-center space-x-4">
+      <button onclick="toggleDarkMode()" class="text-sm text-gray-600 dark:text-gray-300 border px-3 py-1 rounded hover:bg-gray-200 dark:hover:bg-gray-700">Toggle Mode</button>
+      <button onclick="toggleMenu()" class="menu-btn text-indigo-600 dark:text-indigo-400 md:hidden">☰</button>
+    </div>
+  </header>
+  <div id="mobileMenu" class="mobile-menu px-6 py-4 md:hidden bg-white dark:bg-gray-800 text-sm">
+    <a href="/mdc/index.html" class="block py-1 hover:text-indigo-600 dark:hover:text-indigo-400">MDC</a>
+    <a href="/fdc/index.html" class="block py-1 hover:text-indigo-600 dark:hover:text-indigo-400">FDC</a>
+    <a href="/moleculogic/index.html" class="block py-1 hover:text-indigo-600 dark:hover:text-indigo-400">Moleculogic</a>
+  </div>
+
+  <!-- Page Header -->
+  <header class="text-center px-6 py-10 bg-gray-100 dark:bg-gray-800">
+    <h1 class="text-4xl font-bold text-indigo-700 dark:text-indigo-400">Publications & Peer Review</h1>
+    <p class="mt-4 max-w-3xl mx-auto text-lg text-gray-600 dark:text-gray-300">
+      Explore our public datasets, published papers, and reviewer-only access to confidential results.
+    </p>
+  </header>
+
+  <main class="max-w-5xl mx-auto px-6 py-12 space-y-12">
+    <!-- MDC Section -->
+    <section>
+      <h2 class="text-2xl font-semibold text-indigo-600 dark:text-indigo-400 mb-4">Metal Drug Complex (MDC)</h2>
+      <div class="space-y-6">
+        <div class="border-l-4 border-indigo-500 pl-4">
+          <h3 class="font-bold text-lg text-gray-900 dark:text-white">Logic-Gated Zinc Complexes in Viral Inhibition</h3>
+          <p class="text-gray-600 dark:text-gray-300">Published in: Pending</p>
+          <p class="text-sm text-gray-500 dark:text-gray-400">
+            Demonstrates how zinc-ligand MDCs inhibit viral replication through logic-driven docking behavior.<br>
+            <a href="/nda_handler/nda_request_form.html?paper=MDC-Zn-Logic" class="text-indigo-500 dark:text-indigo-300 underline text-sm">Request to Review</a>
+          </p>
+        </div>
+        <div class="border-l-4 border-indigo-500 pl-4">
+          <h3 class="font-bold text-lg text-gray-900 dark:text-white">Theranostic Ru-MDCs for Tumor Microenvironment Sensing</h3>
+          <p class="text-gray-600 dark:text-gray-300">Published in: Pending</p>
+          <p class="text-sm text-gray-500 dark:text-gray-400">
+            Tracks the activation, fluorescence, and clearance patterns of tumor-specific ruthenium MDCs.<br>
+            <a href="/nda_handler/nda_request_form.html?paper=MDC-Ru-TME" class="text-indigo-500 dark:text-indigo-300 underline text-sm">Request to Review</a>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FDC Section -->
+    <section>
+      <h2 class="text-2xl font-semibold text-indigo-600 dark:text-indigo-400 mb-4">Functional Drug Complex (FDC)</h2>
+      <div class="space-y-6">
+        <div class="border-l-4 border-emerald-500 pl-4">
+          <h3 class="font-bold text-lg text-gray-900 dark:text-white">Programmable Ligand-Peptide Interfaces</h3>
+          <p class="text-gray-600 dark:text-gray-300">Published in: Pending</p>
+          <p class="text-sm text-gray-500 dark:text-gray-400">
+            Describes ligand-peptide logic chains for adaptive therapeutic response.<br>
+            <a href="/nda_handler/nda_request_form.html?paper=FDC-Ligand-Peptide" class="text-indigo-500 dark:text-indigo-300 underline text-sm">Request to Review</a>
+          </p>
+        </div>
+        <div class="border-l-4 border-emerald-500 pl-4">
+          <h3 class="font-bold text-lg text-gray-900 dark:text-white">RNA-Guided Molecular Folding in FDCs</h3>
+          <p class="text-gray-600 dark:text-gray-300">Under Submission: Pending</p>
+          <p class="text-sm text-gray-500 dark:text-gray-400">
+            Simulation-driven folding of RNA-linked FDCs for shape-dependent activation.<br>
+            <a href="/nda_handler/nda_request_form.html?paper=FDC-RNA-Folding" class="text-indigo-500 dark:text-indigo-300 underline text-sm">Request to Review</a>
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="text-center p-6 bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 text-sm mt-10">
+    &copy; 2025 Kunfirm Technologies. KT-Biotech is a logic-first molecular infrastructure unifying MDC, FDC, and Moleculogic.
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById('mobileMenu').classList.toggle('open');
+    }
+    function toggleDarkMode() {
+      document.documentElement.classList.toggle('dark');
+    }
+  </script>
+</body>
+</html>

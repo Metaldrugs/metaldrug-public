@@ -1,0 +1,94 @@
+<!-- licensing-opportunities.html - MetalDrug Licensing Page -->
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Licensing Opportunities | MetalDrug</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { darkMode: 'class' };
+  </script>
+</head>
+<body class="bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-100 font-sans">
+
+  <!-- Header -->
+  <div id="site-header"></div>
+
+  <main class="px-6 py-20 max-w-5xl mx-auto">
+    <h1 class="text-4xl font-bold text-indigo-700 dark:text-indigo-400 mb-6">Licensing Opportunities</h1>
+
+    <p class="text-lg text-gray-700 dark:text-gray-300 mb-8">
+      MetalDrug introduces a new licensing model that reflects the programmable nature of modern therapeutic platforms. Rather than static compound ownership, we offer collaborative tiers that align with simulation access, molecule evolution stages, and ethical oversight.
+    </p>
+
+    <!-- Tiered Access Model -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-semibold text-indigo-600 dark:text-indigo-300 mb-4">1. Tiered Simulation-Based Licensing</h2>
+      <p class="text-gray-700 dark:text-gray-300 mb-4">
+        Moleculogic operates on a tiered logic access structure. Each tier corresponds to the maturity and controllability of the molecular blueprint:
+      </p>
+      <ul class="list-disc ml-6 text-gray-700 dark:text-gray-300 space-y-2">
+        <li><strong>Tier 0</strong> - Public simulation preview with basic interaction models (view-only).</li>
+        <li><strong>Tier 1</strong> - NDA-gated access to simulation outputs, logic overlays, and entropy/risk previews.</li>
+        <li><strong>Tier 2</strong> - Partnership-tier for guided simulation evolution and regulatory-aligned therapeutic programming.</li>
+        <li><strong>Tier 3+</strong> - Embedded co-development of novel compounds under milestone and IP-gated co-ownership.</li>
+      </ul>
+    </section>
+
+    <!-- Licensing Structures -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-semibold text-indigo-600 dark:text-indigo-300 mb-4">2. Flexible Licensing Structures</h2>
+      <p class="text-gray-700 dark:text-gray-300 mb-4">
+        Whether you're a pharmaceutical company, university, synthetic biology group, or biotech incubator, we offer access frameworks designed to align with your needs:
+      </p>
+      <ul class="list-disc ml-6 text-gray-700 dark:text-gray-300 space-y-2">
+        <li><strong>Logic-Linked Molecule Licenses</strong> - Licenses are granted not just for molecules, but for the validated logic layers that define them.</li>
+        <li><strong>MDC/FDC-as-a-Service</strong> - We offer runtime access to Moleculogic’s simulation infrastructure via secure, NDA-backed APIs.</li>
+        <li><strong>Therapeutic Blueprint Leasing</strong> - Ideal for research institutions and innovation hubs seeking short-term access to logic-evolved candidates.</li>
+        <li><strong>White-Label Molecular Design Systems</strong> - Deploy Moleculogic simulation logic internally under your brand, while maintaining our logic verification layer.</li>
+      </ul>
+    </section>
+
+    <!-- IP & Access Governance -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-semibold text-indigo-600 dark:text-indigo-300 mb-4">3. IP Ownership & Simulation Traceability</h2>
+      <p class="text-gray-700 dark:text-gray-300 mb-4">
+        Every simulation blueprint is hashed, time-stamped, and traceable. Partners retain commercial rights to derivatives, while core logic layers remain governed under joint simulation audits and ethical simulation protocols.
+      </p>
+      <p class="text-gray-700 dark:text-gray-300">
+        We protect your IP without compromising our simulation integrity. Moleculogic operates as an ethics-embedded simulation platform—no uncontrolled molecule generation, no opaque AI shortcuts.
+      </p>
+    </section>
+
+    <!-- Partnership Invitation -->
+    <section>
+      <h2 class="text-2xl font-semibold text-indigo-600 dark:text-indigo-300 mb-4">4. Begin the Conversation</h2>
+      <p class="text-gray-700 dark:text-gray-300 mb-4">
+        If you’re ready to collaborate, let’s begin with a logic-tier alignment review. This determines which simulation levels best fit your application, licensing model, and development goals.
+      </p>
+      <div class="flex space-x-6 mt-6">
+        <a href="/licensing-form.html" class="bg-indigo-600 text-white px-6 py-2 rounded hover:bg-indigo-700">
+          Submit Interest Form
+        </a>
+        <a href="/nda_handler/nda_request_form.html" class="border border-indigo-600 text-indigo-600 px-6 py-2 rounded hover:bg-indigo-50 dark:border-indigo-400 dark:text-indigo-400">
+          Request NDA Access
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <div id="site-footer"></div>
+
+  <script>
+    fetch('/includes/header.html')
+      .then(res => res.text())
+      .then(data => document.getElementById('site-header').innerHTML = data);
+
+    fetch('/includes/footer.html')
+      .then(res => res.text())
+      .then(data => document.getElementById('site-footer').innerHTML = data);
+  </script>
+</body>
+</html>

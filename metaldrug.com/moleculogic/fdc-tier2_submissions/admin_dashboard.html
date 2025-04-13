@@ -1,0 +1,84 @@
+<!-- admin_dashboard.html -->
+<!--
+  Summary:
+  Admin dashboard to review, preview, and approve pending FDC Tier 2 logic files.
+-->
+
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>FDC Tier 2 Admin Review</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-900 text-white font-sans">
+  <div class="p-6 max-w-5xl mx-auto">
+    <h1 class="text-3xl font-bold text-indigo-400 mb-6">FDC Tier 2: Admin Dashboard</h1>
+    <div id="submissionList" class="space-y-4">
+      <p>Loading submissions...</p>
+    </div>
+  </div>
+
+  <script>
+    async function fetchSubmissions() {
+      const res = await fetch('list_pending.php');
+      const files = await res.json();
+      const container = document.getElementById('submissionList');
+      container.innerHTML = '';
+
+      if (!files.length) {
+        container.innerHTML = '<p class="text-gray-400">No pending submissions.</p>';
+        return;
+      }
+
+      files.forEach(filename => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'p-4 border border-gray-700 rounded bg-gray-800';
+
+        const title = document.createElement('h2');
+        title.textContent = filename;
+        title.className = 'text-lg font-semibold mb-2';
+
+        const preview = document.createElement('pre');
+        preview.className = 'text-sm bg-gray-900 p-3 rounded overflow-x-auto';
+        preview.id = `preview-${filename}`;
+
+        const button = document.createElement('button');
+        button.textContent = 'Approve';
+        button.className = 'mt-2 px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded';
+        button.onclick = () => approveFile(filename);
+
+        wrapper.appendChild(title);
+        wrapper.appendChild(preview);
+        wrapper.appendChild(button);
+        container.appendChild(wrapper);
+
+        fetch(`pending/${filename}`)
+          .then(res => res.text())
+          .then(data => {
+            document.getElementById(`preview-${filename}`).textContent = data;
+          });
+      });
+    }
+
+    async function approveFile(filename) {
+      const res = await fetch('approve_submission.php', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({filename})
+      });
+
+      const data = await res.json();
+      if (data.success) {
+        alert(`Approved: ${filename}`);
+        fetchSubmissions();
+      } else {
+        alert(`Error: ${data.error}`);
+      }
+    }
+
+    fetchSubmissions();
+  </script>
+</body>
+</html>

@@ -1,0 +1,4 @@
+AuthType Basic
+AuthName "Restricted Access - FDC Tier 2 Admin"
+AuthUserFile "C:/Users/Kunfirm/Downloads/MDC_Root/metaldrug.com/moleculogic/fdc-tier2/admin/.htpasswd"
+Require valid-user

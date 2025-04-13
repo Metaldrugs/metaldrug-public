@@ -1,0 +1,38 @@
+[
+  {
+    "id": "FDC001",
+    "title": "Anti-inflammatory Ligand Hybrid",
+    "author": "Dr. A. Ezumba",
+    "validated_on": "2025-04-17",
+    "description": "Hybrid peptide-metal FDC designed for localized anti-inflammatory action with ROS-gated activation.",
+    "logic": {
+      "ligandType": "peptide",
+      "metalAffinity": "moderate",
+      "deliveryVector": "liposomal",
+      "triggers": ["ROS", "pH < 6.8"],
+      "logicTree": {
+        "gate1": "IF ROS > threshold",
+        "gate2": "AND pH < 6.8",
+        "action": "Release payload"
+      }
+    }
+  },
+  {
+    "id": "FDC002",
+    "title": "Neuroshield Protein-Metal Complex",
+    "author": "NeuroLogic Team",
+    "validated_on": "2025-04-18",
+    "description": "FDC using protein folding logic to gate CNS entry and selective release in neuroinflammatory states.",
+    "logic": {
+      "ligandType": "protein",
+      "metalAffinity": "high",
+      "deliveryVector": "nanomicelle",
+      "triggers": ["TNF-alpha", "BBB breach"],
+      "logicTree": {
+        "gate1": "IF TNF-alpha upregulated",
+        "gate2": "AND BBB markers low",
+        "action": "Activate microglial modulation"
+      }
+    }
+  }
+]

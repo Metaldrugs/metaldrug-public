@@ -1,0 +1,78 @@
+<!-- admin_mdc_review.html -->
+<!--
+  Summary:
+  Admin portal for reviewing MDC Tier 2 logic submissions. Allows validation of NDA tokens,
+  loading of submitted blueprints, and approval/rejection for Tier 2 access.
+-->
+
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MDC Tier 2 - Admin Review</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-950 text-gray-100 font-sans p-6">
+  <h1 class="text-3xl font-bold text-indigo-400 mb-4">MDC Tier 2 Review Portal</h1>
+
+  <div class="max-w-2xl bg-gray-900 border border-gray-700 p-6 rounded mb-6">
+    <label for="ndaToken" class="block mb-2 font-semibold">Enter NDA Token:</label>
+    <input type="text" id="ndaToken" class="w-full p-2 text-black dark:text-white bg-white dark:bg-gray-800 border border-gray-600 rounded mb-4" />
+
+    <button onclick="checkToken()" class="px-4 py-2 bg-yellow-500 text-black rounded hover:bg-yellow-600">Check Token</button>
+    <div id="tokenResult" class="mt-3 text-sm text-gray-300"></div>
+  </div>
+
+  <div id="submissionReview" class="hidden max-w-4xl bg-gray-900 border border-gray-700 p-6 rounded">
+    <h2 class="text-xl font-bold text-indigo-300 mb-2">Submitted Blueprint</h2>
+    <pre id="logicOutput" class="bg-gray-800 p-4 rounded text-sm text-green-300 overflow-x-auto mb-4"></pre>
+
+    <div class="flex space-x-4">
+      <button onclick="submitDecision('approve')" class="bg-green-600 px-4 py-2 rounded text-white">Approve</button>
+      <button onclick="submitDecision('reject')" class="bg-red-600 px-4 py-2 rounded text-white">Reject</button>
+    </div>
+    <div id="reviewResult" class="mt-4 text-sm text-gray-400"></div>
+  </div>
+
+  <script>
+    function checkToken() {
+      const token = document.getElementById('ndaToken').value.trim();
+      if (!token) return;
+
+      fetch('/metaldrug.com/scripts/logic_submissions/mdc_tier2_' + token + '.json')
+        .then(res => {
+          if (!res.ok) throw new Error('Not found');
+          return res.json();
+        })
+        .then(data => {
+          document.getElementById('tokenResult').innerHTML = '<span class="text-green-400">Valid logic file found.</span>';
+          document.getElementById('submissionReview').classList.remove('hidden');
+          document.getElementById('logicOutput').innerText = JSON.stringify(data, null, 2);
+        })
+        .catch(() => {
+          document.getElementById('tokenResult').innerHTML = '<span class="text-red-400">No logic submission found for this token.</span>';
+          document.getElementById('submissionReview').classList.add('hidden');
+        });
+    }
+
+    function submitDecision(decision) {
+      const token = document.getElementById('ndaToken').value.trim();
+      if (!token) return;
+
+      fetch('/metaldrug.com/scripts/process_mdc_tier2_approval.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ token, decision })
+      })
+        .then(res => res.json())
+        .then(data => {
+          document.getElementById('reviewResult').innerText = data.message;
+        })
+        .catch(() => {
+          document.getElementById('reviewResult').innerText = 'Submission failed.';
+        });
+    }
+  </script>
+</body>
+</html>

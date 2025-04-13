@@ -1,0 +1,56 @@
+<!-- index.html - MDC Tier 1 Logic Interface -->
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MDC Tier 1 Logic Interface</title>
+  <link rel="stylesheet" href="css/tier1-theme.css" />
+  <script src="validate_blueprint.js" defer></script>
+  <script src="submit_update.js" defer></script>
+  <script>
+    // Simple NDA token check redirect
+    window.onload = function () {
+      const token = localStorage.getItem("nda_mdc_tier1");
+      if (!token) {
+        alert("Access to MDC Tier 1 requires NDA approval. Redirecting...");
+        window.location.href = "/nda_handler/nda_request_form.html";
+      }
+    };
+  </script>
+</head>
+<body>
+  <header>
+    <h1>MDC Tier 1 Logic Engine</h1>
+    <p>Interactive logic circuit testing, blueprint editing, and secure simulation.</p>
+  </header>
+
+  <main>
+    <section id="blueprint-form">
+      <h2>Edit Blueprint</h2>
+      <form onsubmit="return false;">
+        <label>Blueprint ID: <input type="text" id="blueprint-id" /></label><br />
+        <label>Metal Core: <input type="text" id="metal-core" /></label><br />
+        <label>Therapeutic Focus: <input type="text" id="focus" /></label><br />
+        <label>Trigger: <input type="text" id="trigger" /></label><br />
+        <label>Logic Gate: <input type="text" id="gate" /></label><br />
+        <label>Status: <input type="text" id="status" /></label><br />
+        <button onclick="submitBlueprint()">Submit Update</button>
+      </form>
+    </section>
+
+    <section>
+      <h2>Loaded Blueprints</h2>
+      <div id="blueprint-output"></div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; <span id="year"></span> MetalDrug Technologies. All logic data is secured.</p>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

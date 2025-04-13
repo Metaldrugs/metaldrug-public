@@ -1,0 +1,60 @@
+<!-- File: metaldrug.com/review/admin-dashboard.html -->
+<!-- Summary: Unified Reviewer Dashboard for MDC and FDC (Tier 1 & 2) with admin filters and action controls. -->
+
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Review Dashboard - MetalDrug</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="/scripts/admin-review-dashboard.js"></script>
+</head>
+<body class="bg-gray-950 text-gray-100">
+  <div id="header"></div>
+
+  <main class="p-6 max-w-7xl mx-auto">
+    <h1 class="text-3xl font-bold mb-6 text-indigo-400">Admin Blueprint Review Dashboard</h1>
+
+    <div class="mb-4 flex flex-wrap gap-4">
+      <select id="datasetSelector" class="p-2 bg-gray-800 border border-gray-600 rounded">
+        <option value="mdc-tier1">MDC Tier 1</option>
+        <option value="fdc-tier1">FDC Tier 1</option>
+        <option value="mdc-tier2">MDC Tier 2</option>
+        <option value="fdc-tier2">FDC Tier 2</option>
+      </select>
+
+      <select id="statusFilter" class="p-2 bg-gray-800 border border-gray-600 rounded">
+        <option value="all">All</option>
+        <option value="pending">Pending</option>
+        <option value="approved">Approved</option>
+        <option value="rejected">Rejected</option>
+      </select>
+
+      <button onclick="loadSubmissions()" class="px-4 py-2 bg-indigo-600 text-white rounded">Refresh</button>
+    </div>
+
+    <div id="reviewTableContainer" class="overflow-x-auto">
+      <table class="table-auto w-full text-sm border border-gray-700">
+        <thead class="bg-gray-800">
+          <tr>
+            <th class="px-3 py-2 border border-gray-600">Date</th>
+            <th class="px-3 py-2 border border-gray-600">Name</th>
+            <th class="px-3 py-2 border border-gray-600">Status</th>
+            <th class="px-3 py-2 border border-gray-600">Blueprint</th>
+            <th class="px-3 py-2 border border-gray-600">Actions</th>
+          </tr>
+        </thead>
+        <tbody id="reviewTableBody" class="bg-gray-900"></tbody>
+      </table>
+    </div>
+  </main>
+
+  <div id="footer"></div>
+
+  <script>
+    fetch('/metaldrug.com/includes/header.html').then(r => r.text()).then(d => document.getElementById('header').innerHTML = d);
+    fetch('/metaldrug.com/includes/footer.html').then(r => r.text()).then(d => document.getElementById('footer').innerHTML = d);
+  </script>
+</body>
+</html>

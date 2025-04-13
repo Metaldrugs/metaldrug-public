@@ -1,0 +1,69 @@
+<!-- view_blueprint_submission.html -->
+<!--
+  Summary:
+  Admin Review Panel for MDC and FDC Tier 1 and Tier 2 submissions.
+  Allows logic visualization, feedback, and promotion to next tier.
+-->
+
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Review Blueprint Submission</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="/scripts/review_actions.js"></script>
+  <script src="/scripts/review_style_overlays.js"></script>
+</head>
+<body class="bg-gray-900 text-white font-sans">
+
+  <div id="header"></div>
+
+  <main class="max-w-5xl mx-auto p-6">
+    <h1 class="text-3xl font-bold text-indigo-400 mb-4">Review Blueprint Submission</h1>
+
+    <div class="mb-4 p-4 border border-indigo-600 bg-gray-800 rounded">
+      <label class="block mb-2 text-sm">Submission ID or File:</label>
+      <input type="text" id="submissionId" placeholder="Enter filename or ID"
+             class="w-full p-2 text-black dark:text-white bg-white dark:bg-gray-800 border border-gray-600 rounded" />
+      <button onclick="loadBlueprintSubmission()"
+              class="mt-2 bg-indigo-600 px-4 py-2 rounded text-white hover:bg-indigo-700">Load Submission</button>
+    </div>
+
+    <section id="blueprintDisplay" class="hidden bg-gray-800 border border-gray-700 p-4 rounded">
+      <h2 class="text-xl font-semibold text-indigo-300 mb-2">Blueprint Content</h2>
+      <pre id="blueprintContent" class="bg-gray-900 p-4 rounded overflow-x-auto text-sm text-green-300"></pre>
+
+      <h3 class="mt-6 text-lg font-semibold text-indigo-200">Overlay Visualization</h3>
+      <div id="overlayDisplay" class="mt-2 text-sm text-gray-300">[overlay will appear here]</div>
+
+      <div class="mt-6">
+        <label for="reviewComment" class="block mb-2 text-sm font-medium">Admin Comment:</label>
+        <textarea id="reviewComment" rows="4"
+                  class="w-full p-2 text-white bg-gray-900 border border-gray-700 rounded"
+                  placeholder="Write your decision rationale or feedback here..."></textarea>
+      </div>
+
+      <div class="mt-4 flex space-x-4">
+        <button onclick="approveBlueprint()" class="bg-green-600 hover:bg-green-700 px-4 py-2 rounded text-white">Approve & Promote</button>
+        <button onclick="rejectBlueprint()" class="bg-red-600 hover:bg-red-700 px-4 py-2 rounded text-white">Reject</button>
+      </div>
+    </section>
+
+    <div id="reviewStatus" class="mt-4 text-sm text-yellow-400"></div>
+  </main>
+
+  <div id="footer"></div>
+
+  <script>
+    fetch('/metaldrug.com/includes/header.html')
+      .then(res => res.text())
+      .then(data => document.getElementById('header').innerHTML = data);
+
+    fetch('/metaldrug.com/includes/footer.html')
+      .then(res => res.text())
+      .then(data => document.getElementById('footer').innerHTML = data);
+  </script>
+
+</body>
+</html>
